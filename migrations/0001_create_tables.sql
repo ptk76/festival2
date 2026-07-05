@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY NOT NULL,
+    login TEXT NOT NULL,
+    password TEXT NOT NULL,
+    nick TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS votes (
+    user_id INTEGER NOT NULL,
+    band TEXT NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+);
