@@ -22,6 +22,7 @@ function users(params: URLSearchParams) {
 
   if (cmd === "add") {
     const login = params.get("login");
+    // convert password to a hash
     const password = params.get("password");
     const nick = params.get("nick");
     if (login === undefined || password === undefined || nick === undefined)
