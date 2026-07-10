@@ -8,8 +8,11 @@ function TextInput(props: {
 }): React.JSX.Element {
   return (
     <div className={style.container}>
-      <div className={style.label}>{props.label}</div>
+      <label className={style.label} htmlFor="description">
+        {props.label}
+      </label>
       <input
+        id="description"
         className={style.input}
         type={props.isPassword ? "password" : "text"}
         onChange={(e) => props.onChange(e.target.value)}

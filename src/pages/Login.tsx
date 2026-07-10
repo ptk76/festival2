@@ -6,7 +6,7 @@ import Button from "../widgets/Button";
 import { OnNavigate } from "../App";
 
 function Login(props: { onNavigate: OnNavigate }): React.JSX.Element {
-  const { login } = useAppContext();
+  const { create, login } = useAppContext();
   const [nick, setNick] = useState("");
   const [loginStr, setLoginStr] = useState("");
   const [password, setPassword] = useState("");
@@ -24,8 +24,16 @@ function Login(props: { onNavigate: OnNavigate }): React.JSX.Element {
   };
 
   const handleCreateButton = () => {
-    console.log("LOG IN");
+    console.log("CREATE", nick, loginStr, password);
+    create(nick, loginStr, password);
   };
+
+  const handleLoginButton = async () => {
+    console.log("LOG IN", loginStr, password);
+    const result = await login(loginStr, password);
+    console.log("LOGIN RESULT", result);
+  };
+
   return (
     <div className={style.container}>
       <TextInput label="Nick" onChange={handleNickChange} />
@@ -35,7 +43,12 @@ function Login(props: { onNavigate: OnNavigate }): React.JSX.Element {
         onChange={handlePasswordChange}
         isPassword={true}
       />
-      <Button label="Create" onClock={handleCreateButton} />
+      <div className={style.buttons}>
+        <Button label="Create" onClick={handleCreateButton} />
+        <div className={style.leftButton}>
+          <Button label="Log in" onClick={handleLoginButton} />
+        </div>
+      </div>
     </div>
   );
 }

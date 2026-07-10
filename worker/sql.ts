@@ -27,18 +27,49 @@ function users(params: URLSearchParams) {
     const nick = params.get("nick");
     if (login === undefined || password === undefined || nick === undefined)
       return null;
-    return `INSERT INTO users (login, passwoard, nick) VALUES ("${login}", "${password}", "${nick}")`;
+    return `INSERT INTO users (login, password, nick) VALUES ("${login}", "${password}", "${nick}") RETURNING id`;
   }
 
   return `SELECT * FROM users`;
 }
 
+async function hashPassword(password: string): Promise<string> {
+  const data = new TextEncoder().encode(password);
+  const hash = await crypto.subtle.digest("SHA-256", data);
+  return btoa(String.fromCharCode(...new Uint8Array(hash)));
+}
+
+async function login(params: URLSearchParams) {
+  const user = params.get("login");
+  const password = params.get("password");
+  if (!user || !password) return null;
+
+  return `SELECT id, nick FROM users WHERE login = "${user}" AND password = "${await hashPassword(password)}"`;
+}
+
+async function create(params: URLSearchParams) {
+  const nick = params.get("nick");
+  const user = params.get("login");
+  const password = params.get("password");
+  if (!nick || !user || !password) return null;
+
+  return `INSERT INTO users (nick, login, password) VALUES ("${nick}", "${user}", "${await hashPassword(password)}")`;
+}
+
 function votes(params: URLSearchParams) {
+  const cmd = params.get("cmd");
+  if (cmd === "add") {
+    const band = params.get("band");
+    const score = getNumber(params, "score");
+    if (band === undefined || score === undefined) return null;
+    return `INSERT INTO votes (band, score) VALUES ("${band}", ${score})`;
+  }
   return `SELECT * FROM votes`;
 }
 
-export function prepareSqlQuery(urlStr: string) {
-  const url = new URL(urlStr);
+export async function prepareSqlQuery(url: URL) {
+  if (url.pathname.startsWith("/login")) return await login(url.searchParams);
+  if (url.pathname.startsWith("/create")) return await create(url.searchParams);
   if (url.pathname.startsWith("/users")) return users(url.searchParams);
   if (url.pathname.startsWith("/votes")) return votes(url.searchParams);
   return null;

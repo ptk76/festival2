@@ -1,13 +1,33 @@
 .container {
-  display: flex;
   align-items: center;
   height: 1.5rem;
   margin: 2px 4px 0 4px;
-  background-color: aqua;
+  width: fit-content;
 }
 
-.label {
-  color: red;
-  font-size: 1.5rem;
+.button {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
+  background-color: #8f8f8f;
+  color: rgb(68, 68, 68);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 0.5rem;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #838383;
+}
+
+.button:active:not(:disabled) {
+  background-color: #838383;
+}
+
+.button:disabled {
+  background-color: #1b1b1b;
+  cursor: not-allowed;
 }

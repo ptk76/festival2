@@ -2,11 +2,21 @@ import React from "react";
 import { useAppContext } from "../context/AppContext";
 import style from "./Home.module.css";
 import { OnNavigate } from "../App";
+import Button from "../widgets/Button";
 
 function Home(props: { onNavigate: OnNavigate }): React.JSX.Element {
-  const {} = useAppContext();
+  const { logout, votes } = useAppContext();
 
-  return <div className={style.container}>HOME</div>;
+  const onLogOut = () => {
+    logout();
+  };
+
+  return (
+    <div className={style.container}>
+      HOME
+      <Button label="Log out" onClick={onLogOut} />
+    </div>
+  );
 }
 
 export default Home;

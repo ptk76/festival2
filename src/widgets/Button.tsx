@@ -3,13 +3,13 @@ import style from "./Button.module.css";
 
 function Button(props: {
   label: string;
-  onClock: () => void;
+  onClick: () => void;
 }): React.JSX.Element {
   return (
     <div className={style.container}>
-      <div className={style.label} onClick={props.onClock}>
+      <button className={style.button} onClick={props.onClick}>
         {props.label}
-      </div>
+      </button>
     </div>
   );
 }
