@@ -7,6 +7,7 @@ export enum ERROR_TYPE {
 }
 
 export function ErrorResponse(type: ERROR_TYPE): Response {
+  console.log("ERROR", type);
   switch (type) {
     case ERROR_TYPE.BUSY_LOGIN:
       return new Response(
@@ -40,7 +41,7 @@ export function ErrorResponse(type: ERROR_TYPE): Response {
           type: ERROR_TYPE.UNAUTHORIZED,
         }),
         {
-          status: 400,
+          status: 401,
         },
       );
     default:

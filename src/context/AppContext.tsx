@@ -12,21 +12,11 @@ interface AppContextType {
   logout: () => void;
   isAuthenticated: boolean;
   nick: string;
-  votes: () => Promise<Map<string, number>>;
+  votes: any[];
   setVote: (band: string, score: number) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
-
-const queryDatabase = async (api: string): Promise<unknown[]> => {
-  try {
-    const result = await fetch(api);
-    if (result.status != 200) return [];
-    return await result.json();
-  } catch (error) {
-    return [];
-  }
-};
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({
   children,
@@ -34,12 +24,28 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
   const [nick, setNick] = useState<string>("");
   const [token, setToken] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [votes, setVotes] = useState<{ band: string; score: number }[]>([]);
+
+  const queryDatabase = async (api: string): Promise<unknown[]> => {
+    try {
+      const result = await fetch(api);
+      if (result.status === 401) {
+        setIsAuthenticated(false);
+        return [];
+      }
+      return await result.json();
+    } catch (error) {
+      return [];
+    }
+  };
 
   useEffect(() => {
     const t = localStorage.getItem("token");
+    console.log("TOKEN", t);
     if (t) {
       setToken(t);
       setIsAuthenticated(true);
+      getVotes(t);
     }
     return () => {};
   }, []);
@@ -59,6 +65,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
     setToken(result.token);
     localStorage.setItem("token", result.token);
     setIsAuthenticated(result.token !== null);
+    if (result.token !== null) await getVotes(result.token);
+
     return result.token !== null;
   };
 
@@ -73,20 +81,27 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
   //   return token !== null;
   // };
 
-  const votes = async () => {
+  const getVotes = async (token: string) => {
     const result = (await queryDatabase(`/votes?token=${token}`)) as {
       band: string;
       score: number;
     }[];
-    const ret = new Map<string, number>();
-    result.forEach((vote) => ret.set(vote.band, vote.score));
-    return ret;
+    // const ret = new Map<string, number>();
+    // result.forEach((vote) => ret.set(vote.band, vote.score));
+    console.log("VOTES", result);
+    setVotes(result);
+    return true;
   };
 
   const setVote = async (band: string, score: number) => {
-    const result = await queryDatabase(
-      `/votes?token=${token}&cmd=add&band=${band}&score=${score}`,
-    );
+    try {
+      const result = await queryDatabase(
+        `/votes?token=${token}&cmd=add&band=${band.toLocaleLowerCase().trim()}&score=${score}`,
+      );
+      console.log("SET VOTE", result);
+    } catch (error) {
+      console.log("error", error);
+    }
     return true;
   };
 

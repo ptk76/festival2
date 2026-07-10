@@ -9,5 +9,6 @@ CREATE TABLE IF NOT EXISTS votes (
     user_id INTEGER NOT NULL,
     band TEXT NOT NULL,
     score INTEGER NOT NULL,
+    UNIQUE(user_id, band),
     FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
 );

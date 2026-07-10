@@ -1,6 +1,6 @@
 import style from "./Festival.module.css";
 import festivalData from "./db/cp2026.json";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Button from "./widgets/Button";
 import { useAppContext } from "./context/AppContext";
 
@@ -59,25 +59,28 @@ function ScoreIcon(props: { score: number }) {
   return <img className={style.scoreicon} src={imgScore2} />;
 }
 
-function Score(props: { name: string }) {
-  const [score, setScore] = useState(2);
-
-  const readScore = async () => {
-    // const dbScore = await db.getScore(props.name);
-    // setScore(dbScore);
+function debounce(func: any, delay: number) {
+  let timeout = useRef(0);
+  return function (...args: any) {
+    clearTimeout(timeout.current);
+    timeout.current = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
   };
-  useEffect(() => {
-    readScore();
-    return () => {};
-  }, []);
+}
 
+function Score(props: { name: string; score: number }) {
+  const [score, setScore] = useState(props.score);
+  const { setVote } = useAppContext();
+
+  const dSetVote = debounce(setVote, 5000);
   return (
     <div
       className={style.score}
       onClick={async () => {
         const newScore = (score + 1) % 5;
         setScore(newScore);
-        await db.updateScore(props.name.toLocaleLowerCase(), newScore);
+        dSetVote(props.name, newScore);
       }}
     >
       <ScoreIcon score={score} />
@@ -86,32 +89,32 @@ function Score(props: { name: string }) {
 }
 
 function FixedScore(props: { name: string }) {
-  const [score, setScore] = useState(2);
+  const { votes } = useAppContext();
 
-  const readScore = async () => {
-    // const dbScore = await db.getScore(props.name);
-    // setScore(dbScore);
-  };
-  useEffect(() => {
-    readScore();
-    return () => {};
-  }, []);
-
+  const scoreRecord = votes.find(
+    (v) => v.band === props.name.toLocaleLowerCase().trim(),
+  );
   return (
     <div className={style.score}>
-      <ScoreIcon score={score} />
+      <ScoreIcon score={scoreRecord ? scoreRecord.score : 2} />
     </div>
   );
 }
 
 function ListEvents(props: { events: any[] }) {
-  const events = props.events.map((event) => (
-    <div key={fakeKey++} className={style.events}>
-      <Score name={event.name} />
-      {event.time} <div className={style.eventname}>{event.name}</div>{" "}
-      <ListUrls urls={event.urls} />
-    </div>
-  ));
+  const { votes } = useAppContext();
+  const events = props.events.map((event) => {
+    const scoreRecord = votes.find(
+      (v) => v.band === event.name.toLocaleLowerCase().trim(),
+    );
+    return (
+      <div key={fakeKey++} className={style.events}>
+        <Score name={event.name} score={scoreRecord ? scoreRecord.score : 2} />
+        {event.time} <div className={style.eventname}>{event.name}</div>{" "}
+        <ListUrls urls={event.urls} />
+      </div>
+    );
+  });
   return <>{events}</>;
 }
 

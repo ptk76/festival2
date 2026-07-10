@@ -57,17 +57,25 @@ async function create(params: URLSearchParams) {
 }
 
 function votes(params: URLSearchParams) {
+  const userId = getNumber(params, "id");
   const cmd = params.get("cmd");
   if (cmd === "add") {
     const band = params.get("band");
     const score = getNumber(params, "score");
-    if (band === undefined || score === undefined) return null;
-    return `INSERT INTO votes (band, score) VALUES ("${band}", ${score})`;
+    if (band === undefined || score === undefined || userId === undefined)
+      return null;
+    if (score === 2)
+      return `DELETE FROM votes WHERE band="${band}" AND user_id=${userId};`;
+
+    return `INSERT INTO votes (band, score, user_id) VALUES ("${band}", ${score}, ${userId}) ON CONFLICT(band, user_id) DO UPDATE SET score=${score}`;
   }
-  return `SELECT * FROM votes`;
+  if (userId === undefined) return null;
+
+  return `SELECT band, score FROM votes WHERE user_id=${userId}`;
 }
 
 export async function prepareSqlQuery(url: URL) {
+  console.log(url.searchParams);
   if (url.pathname.startsWith("/login")) return await login(url.searchParams);
   if (url.pathname.startsWith("/create")) return await create(url.searchParams);
   if (url.pathname.startsWith("/users")) return users(url.searchParams);

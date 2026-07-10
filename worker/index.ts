@@ -18,7 +18,7 @@ function isUserAuthorised(url: URL) {
   if (!token) return false;
   const tokenData = tokens.get(token);
   if (!tokenData) return false;
-  if (Date.now() - tokenData.date > 60 * 60 * 1000) return false;
+  if (Date.now() - tokenData.date > 7 * 24 * 60 * 60 * 1000) return false;
   return true;
 }
 
