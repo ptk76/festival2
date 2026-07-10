@@ -9,9 +9,7 @@ type TokenData = {
 const tokens = new Map<string, TokenData>();
 
 function isAuthorisationRequired(url: URL) {
-  console.log("URL", url.pathname);
   if (url.pathname === "/login" || url.pathname === "/create") return false;
-  console.log("AUTHO REQ");
   return true;
 }
 
@@ -35,7 +33,6 @@ function getUserId(url: URL) {
 export default {
   async fetch(request: Request, env: Env) {
     const url = new URL(request.url);
-    console.log("START");
     if (isAuthorisationRequired(url) && !isUserAuthorised(url)) {
       return ErrorResponse(ERROR_TYPE.UNAUTHORIZED);
     }
@@ -43,7 +40,6 @@ export default {
     const userId = getUserId(url);
     if (userId) url.searchParams.append("id", String(userId));
     const sqlQuery = await prepareSqlQuery(url);
-    console.log("QUERY", sqlQuery);
 
     if (!sqlQuery) return ErrorResponse(ERROR_TYPE.INVALID_SQL);
 
@@ -52,7 +48,6 @@ export default {
       const { results } = await stmt.all();
 
       if (request.url.includes("login?")) {
-        console.log("LOG RESULT", results.length);
         const body =
           results.length === 1
             ? { nick: results[0].nick, token: uuidv4() }
@@ -63,7 +58,6 @@ export default {
             date: Date.now(),
           });
         }
-        console.log("TOKESN", tokens);
         return new Response(JSON.stringify(body), {
           headers: {
             "Content-Type": "application/json",
@@ -81,7 +75,6 @@ export default {
         error instanceof Error &&
         error.message.includes("UNIQUE constraint failed: users.login")
       ) {
-        console.log("ERROR", error.message);
         return ErrorResponse(ERROR_TYPE.BUSY_LOGIN);
       }
       return ErrorResponse(ERROR_TYPE.UNKNOWN);

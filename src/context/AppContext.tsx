@@ -21,11 +21,9 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 const queryDatabase = async (api: string): Promise<unknown[]> => {
   try {
     const result = await fetch(api);
-    console.log("CONTEXT", await result);
     if (result.status != 200) return [];
     return await result.json();
   } catch (error) {
-    console.log("Error", error);
     return [];
   }
 };
@@ -68,7 +66,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
     const result = await queryDatabase(
       `/create?nick=${nick}&login=${login}&password=${password}`,
     );
-    console.log("RESULT", result);
     return true;
   };
 
@@ -90,7 +87,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
     const result = await queryDatabase(
       `/votes?token=${token}&cmd=add&band=${band}&score=${score}`,
     );
-    console.log("RESULT", result);
     return true;
   };
 

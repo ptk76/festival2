@@ -1,0 +1,76 @@
+.root {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.festival {
+  font-size: large;
+  font-weight: bold;
+  color: rgb(78, 78, 78);
+}
+
+.dates {
+  background-color: rgb(43, 43, 43);
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  margin: 12px 6px;
+}
+
+.daytitle {
+  margin: 10px;
+}
+
+.stages {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  /* border-radius: 0 0 8px 8px; */
+  margin: 12px 0 0;
+  padding: 12px 10px;
+}
+
+.stagesnow {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.events {
+  display: flex;
+  align-items: anchor-center;
+  color: gray;
+}
+
+.eventname {
+  font-weight: bold;
+  margin-left: 12px;
+}
+
+.url {
+  margin-left: 10px;
+}
+
+.score{
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.scoreicon{
+  height: 32px;
+}
+
+.shownow{
+  background-color: black;
+  display: flex;
+  border-radius: 8px;
+  flex-direction: column;
+  margin: 5px;
+  padding: 6px;
+}
+
+.rightButton {
+  margin-left: auto;
+}

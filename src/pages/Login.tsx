@@ -24,14 +24,11 @@ function Login(props: { onNavigate: OnNavigate }): React.JSX.Element {
   };
 
   const handleCreateButton = () => {
-    console.log("CREATE", nick, loginStr, password);
     create(nick, loginStr, password);
   };
 
   const handleLoginButton = async () => {
-    console.log("LOG IN", loginStr, password);
     const result = await login(loginStr, password);
-    console.log("LOGIN RESULT", result);
   };
 
   return (
@@ -45,7 +42,7 @@ function Login(props: { onNavigate: OnNavigate }): React.JSX.Element {
       />
       <div className={style.buttons}>
         <Button label="Create" onClick={handleCreateButton} />
-        <div className={style.leftButton}>
+        <div className={style.rightButton}>
           <Button label="Log in" onClick={handleLoginButton} />
         </div>
       </div>
