@@ -14,6 +14,7 @@ interface AppContextType {
   nick: string;
   votes: any[];
   setVote: (band: string, score: number) => void;
+  updateLocalVote: (band: string, score: number) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -93,6 +94,17 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
     return true;
   };
 
+  const updateLocalVote = (band: string, score: number) => {
+    const tempVotes = new Array(...votes);
+    const voteToUpdate = tempVotes.find(
+      (v) => v.band === band.toLocaleLowerCase().trim(),
+    );
+    if (voteToUpdate) {
+      voteToUpdate.score = score;
+      setVotes(tempVotes);
+    }
+  };
+
   const setVote = async (band: string, score: number) => {
     try {
       const result = await queryDatabase(
@@ -115,6 +127,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
         isAuthenticated,
         votes,
         setVote,
+        updateLocalVote,
       }}
     >
       {children}

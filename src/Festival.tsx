@@ -72,7 +72,7 @@ function debounce(func: any, delay: number) {
 
 function Score(props: { name: string; score: number }) {
   const [score, setScore] = useState(props.score);
-  const { setVote } = useAppContext();
+  const { setVote, updateLocalVote } = useAppContext();
 
   const dSetVote = debounce(setVote, 5000);
   return (
@@ -81,6 +81,7 @@ function Score(props: { name: string; score: number }) {
       onClick={async () => {
         const newScore = (score + 1) % 5;
         setScore(newScore);
+        updateLocalVote(props.name, newScore);
         dSetVote(props.name, newScore);
       }}
     >
