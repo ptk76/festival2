@@ -44,6 +44,7 @@ import imgScore1 from "./assets/score_1.png";
 import imgScore2 from "./assets/score_2.png";
 import imgScore3 from "./assets/score_3.png";
 import imgScore4 from "./assets/score_4.png";
+import { stringTimeToClockTime } from "./pages/utils";
 
 function ScoreIcon(props: { score: number }) {
   switch (props.score) {
@@ -110,7 +111,8 @@ function ListEvents(props: { events: any[] }) {
     return (
       <div key={fakeKey++} className={style.events}>
         <Score name={event.name} score={scoreRecord ? scoreRecord.score : 2} />
-        {event.time} <div className={style.eventname}>{event.name}</div>{" "}
+        {stringTimeToClockTime(event.time)}{" "}
+        <div className={style.eventname}>{event.name}</div>{" "}
         <ListUrls urls={event.urls} />
       </div>
     );
@@ -202,7 +204,7 @@ function FindNow(props: { stage: any }) {
     const day = festivalData.days.find((day) => isToday(day.date));
     if (day) {
       const event = props.stage.events.find((event: any) =>
-        isTimeNow(day.date + "." + event.time),
+        isTimeNow(event.time),
       );
       if (event)
         setDiv(
@@ -211,7 +213,7 @@ function FindNow(props: { stage: any }) {
               {props.stage.name}
               <div className={style.events}>
                 <FixedScore name={event.name} />
-                {event.time}{" "}
+                {stringTimeToClockTime(event.time)}{" "}
                 <div className={style.eventname}>{event.name}</div>{" "}
               </div>
             </div>
@@ -245,7 +247,7 @@ function FindNext(props: { stage: any }) {
     const day = festivalData.days.find((day) => isToday(day.date));
     if (day) {
       const event = props.stage.events.find((event: any) =>
-        isTimeNext(day.date + "." + event.time),
+        isTimeNext(event.time),
       );
       if (event) {
         setDiv(
@@ -254,7 +256,7 @@ function FindNext(props: { stage: any }) {
               {props.stage.name}
               <div className={style.events}>
                 <FixedScore name={event.name} />
-                {event.time}{" "}
+                {stringTimeToClockTime(event.time)}{" "}
                 <div className={style.eventname}>{event.name}</div>{" "}
               </div>
             </div>
@@ -277,7 +279,7 @@ function ShowNext() {
 }
 
 function FestivalEvent() {
-  const { logout, votes } = useAppContext();
+  const { logout } = useAppContext();
 
   const onLogOut = () => {
     logout();

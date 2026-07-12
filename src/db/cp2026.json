@@ -2,13 +2,13 @@
   "festival": "Castle Party 2026",
   "days": [
     {
-      "date": "2026.07.16",
+      "date": "2026-07-16",
       "stages": [
         {
           "name": "Scena Parkowa",
           "events": [
             {
-              "time": "16:00",
+              "time": "2026-07-16 16:00",
               "name": "Meluzyna",
               "urls": [
                 "https://www.facebook.com/meluzyna.band/?locale=pl_PL",
@@ -16,7 +16,7 @@
               ]
             },
             {
-              "time": "17:10",
+              "time": "2026-07-16 17:10",
               "name": "After the Sin",
               "urls": [
                 "https://afterthesin.com",
@@ -25,7 +25,7 @@
               ]
             },
             {
-              "time": "18:25",
+              "time": "2026-07-16 18:25",
               "name": "Mayflower Madame",
               "urls": [
                 "https://mayflowermadame.bandcamp.com/music",
@@ -34,7 +34,7 @@
             },
 
             {
-              "time": "19:45",
+              "time": "2026-07-16 19:45",
               "name": "Denuit",
               "urls": [
                 "https://denuit.bandcamp.com/music",
@@ -44,7 +44,7 @@
             },
 
             {
-              "time": "21:05",
+              "time": "2026-07-16 21:05",
               "name": "A Projection",
               "urls": [
                 "https://aprojection.com/",
@@ -55,7 +55,7 @@
             },
 
             {
-              "time": "22:35",
+              "time": "2026-07-16 22:35",
               "name": "Merciful Nuns",
               "urls": [
                 "https://mercifulnuns.org/",
@@ -68,14 +68,14 @@
       ]
     },
     {
-      "date": "2026.07.17",
+      "date": "2026-07-17",
       "stages": [
         {
           "name": "Scena Zamkowa",
           "events": [
             {
               "name": "The Last Digital Angel",
-              "time": "14:40",
+              "time": "2026-07-17 14:40",
               "urls": [
                 "https://castleparty.com/",
                 "https://www.youtube.com/results?search_query=The+Last+Digital+Angel"
@@ -83,7 +83,7 @@
             },
             {
               "name": "She Pleasures Herself",
-              "time": "15:50",
+              "time": "2026-07-17 15:50",
               "urls": [
                 "https://shepleasuresherself.bandcamp.com/",
                 "https://www.youtube.com/watch?v=5qNj3s90oig"
@@ -91,7 +91,7 @@
             },
             {
               "name": "Rotersand",
-              "time": "17:00",
+              "time": "2026-07-17 17:00",
               "urls": [
                 "https://rotersand.net/",
                 "https://www.youtube.com/watch?v=i3sD5sajU7I"
@@ -99,7 +99,7 @@
             },
             {
               "name": "Empathy Test",
-              "time": "18:20",
+              "time": "2026-07-17 18:20",
               "urls": [
                 "https://www.empathytest.com/",
                 "https://www.youtube.com/watch?v=T1GbBddA94Y"
@@ -107,7 +107,7 @@
             },
             {
               "name": "Hocico",
-              "time": "19:50",
+              "time": "2026-07-17 19:50",
               "urls": [
                 "https://www.hocico.com/",
                 "https://www.youtube.com/watch?v=a-1lzP_Y5n4"
@@ -115,7 +115,7 @@
             },
             {
               "name": "Diary of Dreams",
-              "time": "21:20",
+              "time": "2026-07-17 21:20",
               "urls": [
                 "https://www.diaryofdreams.de/",
                 "https://www.youtube.com/watch?v=cnKffAZAhoA"
@@ -123,7 +123,7 @@
             },
             {
               "name": "VNV NATION",
-              "time": "23:15",
+              "time": "2026-07-17 23:15",
               "urls": [
                 "https://vnvnation.com/",
                 "https://www.youtube.com/@vnvnationofficial"
@@ -136,7 +136,7 @@
           "events": [
             {
               "name": "Wolfpack Heading Nowhere",
-              "time": "16:00",
+              "time": "2026-07-17 16:00",
               "urls": [
                 "https://www.facebook.com/wolfpack.heading.nowhere",
                 "https://www.youtube.com/watch?v=mZUp_FNgmDY"
@@ -144,7 +144,7 @@
             },
             {
               "name": "Thy Worshiper",
-              "time": "17:10",
+              "time": "2026-07-17 17:10",
               "urls": [
                 "https://thyworshiper.bandcamp.com/",
                 "https://www.youtube.com/watch?v=s4ddbzX3UjQ"
@@ -152,7 +152,7 @@
             },
             {
               "name": "On All Fours",
-              "time": "18:25",
+              "time": "2026-07-17 18:25",
               "urls": [
                 "https://onallfours.net/",
                 "https://www.youtube.com/results?search_query=On+All+Fours+band"
@@ -160,7 +160,7 @@
             },
             {
               "name": "The Devil's Trade",
-              "time": "19:40",
+              "time": "2026-07-17 19:40",
               "urls": [
                 "https://thedevilstrade.bandcamp.com/",
                 "https://www.youtube.com/@mdgytdt"
@@ -168,7 +168,7 @@
             },
             {
               "name": "Wyatt E",
-              "time": "21:00",
+              "time": "2026-07-17 21:00",
               "urls": [
                 "https://wyattdoom.band/",
                 "https://www.youtube.com/c/WyattDoom"
@@ -176,7 +176,7 @@
             },
             {
               "name": "Wolvennest",
-              "time": "22:30",
+              "time": "2026-07-17 22:30",
               "urls": [
                 "https://wolvennestband.com/",
                 "https://www.youtube.com/watch?v=9y_JVmDjIBw"
@@ -184,7 +184,7 @@
             },
             {
               "name": "Sierra Veins - night show",
-              "time": "01:00",
+              "time": "2026-07-18 01:00",
               "urls": [
                 "https://sierraveins.com/",
                 "https://www.youtube.com/@sierraveins"
@@ -195,13 +195,13 @@
       ]
     },
     {
-      "date": "2026.07.18",
+      "date": "2026-07-18",
       "stages": [
         {
           "name": "Scena Zamkowa",
           "events": [
             {
-              "time": "14:50",
+              "time": "2026-07-18 14:50",
               "name": "Her Own World",
               "urls": [
                 "https://herownworld.eu/",
@@ -209,7 +209,7 @@
               ]
             },
             {
-              "time": "16:00",
+              "time": "2026-07-18 16:00",
               "name": "The Silverblack",
               "urls": [
                 "http://www.thesilverblack.com",
@@ -217,7 +217,7 @@
               ]
             },
             {
-              "time": "17:10",
+              "time": "2026-07-18 17:10",
               "name": "Long Night",
               "urls": [
                 "https://www.longnight.band/",
@@ -225,7 +225,7 @@
               ]
             },
             {
-              "time": "18:30",
+              "time": "2026-07-18 18:30",
               "name": "Dawn of Ashes",
               "urls": [
                 "https://www.facebook.com/dawnofashes",
@@ -233,7 +233,7 @@
               ]
             },
             {
-              "time": "20:00",
+              "time": "2026-07-18 20:00",
               "name": "The 3rd and the Mortal",
               "urls": [
                 "http://mortal.info/",
@@ -241,7 +241,7 @@
               ]
             },
             {
-              "time": "21:30",
+              "time": "2026-07-18 21:30",
               "name": "Tribulation",
               "urls": [
                 "https://tribulation.se/",
@@ -249,7 +249,7 @@
               ]
             },
             {
-              "time": "23:30",
+              "time": "2026-07-18 23:30",
               "name": "MOONSPELL",
               "urls": [
                 "https://moonspell.com/",
@@ -262,7 +262,7 @@
           "name": "Scena Parkowa",
           "events": [
             {
-              "time": "16:00",
+              "time": "2026-07-18 16:00",
               "name": "Infamis Tenebre",
               "urls": [
                 "https://www.facebook.com/infamistenebre",
@@ -270,7 +270,7 @@
               ]
             },
             {
-              "time": "17:10",
+              "time": "2026-07-18 17:10",
               "name": "The Allegoris",
               "urls": [
                 "https://theallegoristmusic.com/",
@@ -278,7 +278,7 @@
               ]
             },
             {
-              "time": "18:25",
+              "time": "2026-07-18 18:25",
               "name": "In Slaughter Natives",
               "urls": [
                 "https://inslaughter-natives.bandcamp.com/",
@@ -286,7 +286,7 @@
               ]
             },
             {
-              "time": "19:45",
+              "time": "2026-07-18 19:45",
               "name": "Xotox",
               "urls": [
                 "http://www.xotox.info/",
@@ -294,7 +294,7 @@
               ]
             },
             {
-              "time": "21:05",
+              "time": "2026-07-18 21:05",
               "name": "This Morn' Omina",
               "urls": [
                 "https://cycliclaw.com/",
@@ -302,7 +302,7 @@
               ]
             },
             {
-              "time": "22:35",
+              "time": "2026-07-18 22:35",
               "name": "Hybryds",
               "urls": [
                 "https://hybrydsmusic.bandcamp.com/",
@@ -310,7 +310,7 @@
               ]
             },
             {
-              "time": "00:00",
+              "time": "2026-07-19 00:00",
               "name": "Rein - night show",
               "urls": [
                 "https://reinofficial.com/",
@@ -323,14 +323,14 @@
     },
 
     {
-      "date": "2026.07.19",
+      "date": "2026-07-19",
       "stages": [
         {
           "name": "Scena Zamkowa",
           "events": [
             {
               "name": "Agonised Too",
-              "time": "14:50",
+              "time": "2026-07-19 14:50",
               "urls": [
                 "https://www.facebook.com/agonisedtoo",
                 "https://www.youtube.com/watch?v=Xbie_ASSFXU"
@@ -338,7 +338,7 @@
             },
             {
               "name": "White Ritual",
-              "time": "16:00",
+              "time": "2026-07-19 16:00",
               "urls": [
                 "https://whiteritual.bandcamp.com/",
                 "https://www.youtube.com/watch?v=9qmOrCSUYkw"
@@ -346,7 +346,7 @@
             },
             {
               "name": "Horskh",
-              "time": "17:10",
+              "time": "2026-07-19 17:10",
               "urls": [
                 "https://www.horskh.com/",
                 "https://www.youtube.com/watch?v=uufHjyEev0s"
@@ -354,7 +354,7 @@
             },
             {
               "name": "Rue Oberkampf",
-              "time": "18:30",
+              "time": "2026-07-19 18:30",
               "urls": [
                 "https://rueoberkampf.bandcamp.com/",
                 "https://www.youtube.com/watch?v=tZ9mNHdG6rw"
@@ -362,7 +362,7 @@
             },
             {
               "name": "Ash Code",
-              "time": "19:50",
+              "time": "2026-07-19 19:50",
               "urls": [
                 "https://www.ashcode.eu/",
                 "https://www.youtube.com/watch?v=BBTEIQZCHUw"
@@ -370,7 +370,7 @@
             },
             {
               "name": "Cold Cave",
-              "time": "21:20",
+              "time": "2026-07-19 21:20",
               "urls": [
                 "https://coldcave.net/",
                 "https://www.youtube.com/watch?v=vc2f7_XR4dM"
@@ -378,7 +378,7 @@
             },
             {
               "name": "SKÁLD",
-              "time": "23:15",
+              "time": "2026-07-19 23:15",
               "urls": [
                 "https://skaldmusic.com/",
                 "https://www.youtube.com/watch?v=epGvHSRizT0"
@@ -391,7 +391,7 @@
           "events": [
             {
               "name": "Ira Noctis",
-              "time": "17:20",
+              "time": "2026-07-19 17:20",
               "urls": [
                 "https://iranoctis.bandcamp.com/",
                 "https://www.youtube.com/@iranoctis_official"
@@ -399,7 +399,7 @@
             },
             {
               "name": "Diskonnekt",
-              "time": "18:30",
+              "time": "2026-07-19 18:30",
               "urls": [
                 "https://www.facebook.com/diskonnekt.music",
                 "https://www.youtube.com/results?search_query=Diskonnekt+band"
@@ -407,7 +407,7 @@
             },
             {
               "name": "Autoscopy",
-              "time": "19:45",
+              "time": "2026-07-19 19:45",
               "urls": [
                 "http://autoscopy.eu/",
                 "https://www.youtube.com/watch?v=6gG-8X18yLU"
@@ -415,7 +415,7 @@
             },
             {
               "name": "Mortes",
-              "time": "21:00",
+              "time": "2026-07-19 21:00",
               "urls": [
                 "https://mortes.bandcamp.com/",
                 "https://www.youtube.com/watch?v=hhTvGgyarrY"
@@ -423,7 +423,7 @@
             },
             {
               "name": "Unter Null",
-              "time": "22:30",
+              "time": "2026-07-19 22:30",
               "urls": [
                 "https://unter-null.net/",
                 "https://www.youtube.com/channel/UCjsN5lErq-KIAPWuMMHqPCQ"
@@ -431,7 +431,7 @@
             },
             {
               "name": "Extize - night show",
-              "time": "00:00",
+              "time": "2026-07-20 00:00",
               "urls": [
                 "https://extize.bandcamp.com/",
                 "https://www.youtube.com/@EXTIZE"
