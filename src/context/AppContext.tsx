@@ -42,7 +42,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
 
   useEffect(() => {
     const t = localStorage.getItem("token");
-    console.log("TOKEN", t);
     if (t) {
       setToken(t);
       setIsAuthenticated(true);
@@ -78,18 +77,11 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
     return true;
   };
 
-  // const isAuthenticated = () => {
-  //   return token !== null;
-  // };
-
   const getVotes = async (token: string) => {
     const result = (await queryDatabase(`/votes?token=${token}`)) as {
       band: string;
       score: number;
     }[];
-    // const ret = new Map<string, number>();
-    // result.forEach((vote) => ret.set(vote.band, vote.score));
-    console.log("VOTES", result);
     setVotes(result);
     return true;
   };
@@ -110,7 +102,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
       const result = await queryDatabase(
         `/votes?token=${token}&cmd=add&band=${band.toLocaleLowerCase().trim()}&score=${score}`,
       );
-      console.log("SET VOTE", result);
     } catch (error) {
       console.log("error", error);
     }

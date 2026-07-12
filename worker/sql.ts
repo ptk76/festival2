@@ -75,7 +75,6 @@ function votes(params: URLSearchParams) {
 }
 
 export async function prepareSqlQuery(url: URL) {
-  console.log(url.searchParams);
   if (url.pathname.startsWith("/login")) return await login(url.searchParams);
   if (url.pathname.startsWith("/create")) return await create(url.searchParams);
   if (url.pathname.startsWith("/users")) return users(url.searchParams);
