@@ -280,10 +280,15 @@ function ShowNext() {
 }
 
 function FestivalEvent() {
-  const { logout } = useAppContext();
+  const { logout, shareVotes } = useAppContext();
 
   const onLogOut = () => {
     logout();
+  };
+
+  const onShare = async () => {
+    const result = await shareVotes();
+    window.open(`/?share=${result.token}`);
   };
 
   return (
@@ -299,7 +304,7 @@ function FestivalEvent() {
       </div>
       <ListDates />
       <div className={style.buttons}>
-        <Button label="Share" onClick={() => {}} />
+        <Button label="Share" onClick={onShare} />
         <Button label="Log out" onClick={onLogOut} />
       </div>
     </div>

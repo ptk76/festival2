@@ -24,6 +24,8 @@ interface AppContextType {
   votes: any[];
   setVote: (band: string, score: number) => void;
   updateLocalVote: (band: string, score: number) => void;
+  shareVotes: () => Promise<{ token: string }>;
+  getSharedVotes: (id: string) => Promise<{ band: string; score: number }[]>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -83,8 +85,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
     const result = await queryDatabase(
       `/create?nick=${nick}&login=${login}&password=${password}`,
     );
-    if (isResponseMessage(result)) return result;
-    else return { msg: "", type: MESSAGE_TYPE.SUCCESS };
+    if (isResponseMessage(result)) return result as unknown as ResponseMessage;
+    else return { msg: "", type: MESSAGE_TYPE.SUCCESS } as ResponseMessage;
   };
 
   const getVotes = async (token: string) => {
@@ -94,6 +96,19 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
     }[];
     setVotes(result);
     return true;
+  };
+
+  const shareVotes = async () => {
+    const result = await queryDatabase(`/newshare?token=${token}`);
+    return result as unknown as { token: string };
+  };
+
+  const getSharedVotes = async (id: string) => {
+    const result = (await queryDatabase(`/share?id=${id}`)) as {
+      band: string;
+      score: number;
+    }[];
+    return result;
   };
 
   const updateLocalVote = (band: string, score: number) => {
@@ -129,6 +144,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
         votes,
         setVote,
         updateLocalVote,
+        shareVotes,
+        getSharedVotes,
       }}
     >
       {children}

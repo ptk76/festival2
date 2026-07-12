@@ -8,10 +8,13 @@ document.body.style.margin = "0px";
 document.body.style.fontFamily = "system-ui";
 document.body.style.userSelect = "none";
 
+const url = new URL(location.href);
+const sharedId = url.searchParams.get("share");
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <AppProvider>
-      <App />
+      <App sharedId={sharedId ?? undefined} />
     </AppProvider>
   </StrictMode>,
 );

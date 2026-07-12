@@ -7,9 +7,15 @@ type TokenData = {
   date: number;
 };
 const tokens = new Map<string, TokenData>();
+const shares = new Map<string, TokenData>();
 
 function isAuthorisationRequired(url: URL) {
-  if (url.pathname === "/login" || url.pathname === "/create") return false;
+  if (
+    url.pathname === "/login" ||
+    url.pathname === "/create" ||
+    url.pathname === "/share"
+  )
+    return false;
   return true;
 }
 
@@ -38,7 +44,37 @@ export default {
     }
 
     const userId = getUserId(url);
-    if (userId) url.searchParams.append("id", String(userId));
+
+    if (url.pathname.startsWith("/newshare")) {
+      const token = url.searchParams.get("token");
+      const user = tokens.get(token ?? "");
+      if (user) {
+        const body = { token: uuidv4() };
+        shares.set(body.token, {
+          id: user.id,
+          date: Date.now(),
+        });
+        return new Response(JSON.stringify(body), {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      } else {
+        return ErrorResponse(MESSAGE_TYPE.UNKNOWN);
+      }
+    }
+
+    if (url.pathname.startsWith("/share")) {
+      const token = url.searchParams.get("id");
+      url.searchParams.delete("id");
+      const user = shares.get(token ?? "");
+      if (user && Date.now() - user.date < 7 * 24 * 60 * 60 * 1000)
+        url.searchParams.append("id", String(user.id));
+      else return ErrorResponse(MESSAGE_TYPE.INVALID_SHARE);
+    } else if (userId) {
+      url.searchParams.append("id", String(userId));
+    }
+
     const sqlQuery = await prepareSqlQuery(url);
 
     if (!sqlQuery) return ErrorResponse(MESSAGE_TYPE.INVALID_SQL);

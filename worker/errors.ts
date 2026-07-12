@@ -4,6 +4,7 @@ export enum MESSAGE_TYPE {
   INVALID_PASSWORD,
   INVALID_SQL,
   UNAUTHORIZED,
+  INVALID_SHARE,
   UNKNOWN,
 }
 
@@ -49,6 +50,16 @@ export function ErrorResponse(type: MESSAGE_TYPE): Response {
         JSON.stringify({
           msg: "Not authorised",
           type: MESSAGE_TYPE.UNAUTHORIZED,
+        }),
+        {
+          status: 401,
+        },
+      );
+    case MESSAGE_TYPE.INVALID_SHARE:
+      return new Response(
+        JSON.stringify({
+          msg: "This share link is invalid",
+          type: MESSAGE_TYPE.INVALID_SHARE,
         }),
         {
           status: 401,
