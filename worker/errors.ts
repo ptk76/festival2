@@ -1,44 +1,54 @@
-export enum ERROR_TYPE {
-  UNKNOWN,
+export enum MESSAGE_TYPE {
+  SUCCESS,
   BUSY_LOGIN,
   INVALID_PASSWORD,
   INVALID_SQL,
   UNAUTHORIZED,
+  UNKNOWN,
 }
 
-export function ErrorResponse(type: ERROR_TYPE): Response {
+export type ResponseMessage = {
+  msg: string;
+  type: MESSAGE_TYPE;
+};
+
+export function isResponseMessage(msg: unknown) {
+  return msg && typeof msg === "object" && "msg" in msg && "type" in msg;
+}
+
+export function ErrorResponse(type: MESSAGE_TYPE): Response {
   console.log("ERROR", type);
   switch (type) {
-    case ERROR_TYPE.BUSY_LOGIN:
+    case MESSAGE_TYPE.BUSY_LOGIN:
       return new Response(
         JSON.stringify({
-          msg: "Login already exists",
-          type: ERROR_TYPE.BUSY_LOGIN,
+          msg: "The user already exists",
+          type: MESSAGE_TYPE.BUSY_LOGIN,
         }),
         {
           status: 400,
         },
       );
-    case ERROR_TYPE.INVALID_PASSWORD:
+    case MESSAGE_TYPE.INVALID_PASSWORD:
       return new Response(
         JSON.stringify({
           msg: "Invalid password",
-          type: ERROR_TYPE.INVALID_PASSWORD,
+          type: MESSAGE_TYPE.INVALID_PASSWORD,
         }),
         {
           status: 400,
         },
       );
-    case ERROR_TYPE.INVALID_SQL:
+    case MESSAGE_TYPE.INVALID_SQL:
       return new Response(
-        JSON.stringify({ msg: "Invalid URL", type: ERROR_TYPE.INVALID_SQL }),
+        JSON.stringify({ msg: "Invalid URL", type: MESSAGE_TYPE.INVALID_SQL }),
         { status: 404 },
       );
-    case ERROR_TYPE.UNAUTHORIZED:
+    case MESSAGE_TYPE.UNAUTHORIZED:
       return new Response(
         JSON.stringify({
           msg: "Not authorised",
-          type: ERROR_TYPE.UNAUTHORIZED,
+          type: MESSAGE_TYPE.UNAUTHORIZED,
         }),
         {
           status: 401,
@@ -46,7 +56,7 @@ export function ErrorResponse(type: ERROR_TYPE): Response {
       );
     default:
       return new Response(
-        JSON.stringify({ msg: "Unknown error", type: ERROR_TYPE.UNKNOWN }),
+        JSON.stringify({ msg: "Unknown error", type: MESSAGE_TYPE.UNKNOWN }),
         { status: 400 },
       );
   }

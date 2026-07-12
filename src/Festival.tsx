@@ -181,7 +181,7 @@ function DateView(props: { day: any }) {
 
 function ListDates() {
   const dates = festivalData.days.map((day) => {
-    return <DateView day={day} />;
+    return <DateView key={day.date} day={day} />;
   });
   return <>{dates}</>;
 }
@@ -274,7 +274,7 @@ function FindNext(props: { stage: any }) {
 
 function ShowNext() {
   const day = festivalData.days.find((day) => isToday(day.date));
-  if (!day) return <>---</>;
+  if (!day) return <></>;
 
   return day.stages.map((stage) => <FindNext stage={stage} />);
 }
@@ -289,9 +289,6 @@ function FestivalEvent() {
   return (
     <div className={style.root}>
       <div className={style.festival}>{festivalData.festival}</div>
-      <div className={style.rightButton}>
-        <Button label="Log out" onClick={onLogOut} />
-      </div>
       <div>Now:</div>
       <div className={style.shownow}>
         <ShowNow />
@@ -301,6 +298,10 @@ function FestivalEvent() {
         <ShowNext />
       </div>
       <ListDates />
+      <div className={style.buttons}>
+        <Button label="Share" onClick={() => {}} />
+        <Button label="Log out" onClick={onLogOut} />
+      </div>
     </div>
   );
 }

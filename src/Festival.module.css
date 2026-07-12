@@ -71,6 +71,7 @@
   padding: 6px;
 }
 
-.rightButton {
+.buttons {
+  display: flex;
   margin-left: auto;
 }

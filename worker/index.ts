@@ -1,6 +1,6 @@
 import { prepareSqlQuery } from "./sql";
 import { v4 as uuidv4 } from "uuid";
-import { ErrorResponse, ERROR_TYPE } from "./errors";
+import { ErrorResponse, MESSAGE_TYPE } from "./errors";
 
 type TokenData = {
   id: number;
@@ -34,14 +34,14 @@ export default {
   async fetch(request: Request, env: Env) {
     const url = new URL(request.url);
     if (isAuthorisationRequired(url) && !isUserAuthorised(url)) {
-      return ErrorResponse(ERROR_TYPE.UNAUTHORIZED);
+      return ErrorResponse(MESSAGE_TYPE.UNAUTHORIZED);
     }
 
     const userId = getUserId(url);
     if (userId) url.searchParams.append("id", String(userId));
     const sqlQuery = await prepareSqlQuery(url);
 
-    if (!sqlQuery) return ErrorResponse(ERROR_TYPE.INVALID_SQL);
+    if (!sqlQuery) return ErrorResponse(MESSAGE_TYPE.INVALID_SQL);
 
     try {
       const stmt = env.DB.prepare(sqlQuery);
@@ -75,9 +75,9 @@ export default {
         error instanceof Error &&
         error.message.includes("UNIQUE constraint failed: users.login")
       ) {
-        return ErrorResponse(ERROR_TYPE.BUSY_LOGIN);
+        return ErrorResponse(MESSAGE_TYPE.BUSY_LOGIN);
       }
-      return ErrorResponse(ERROR_TYPE.UNKNOWN);
+      return ErrorResponse(MESSAGE_TYPE.UNKNOWN);
     }
   },
 } satisfies ExportedHandler<Env>;

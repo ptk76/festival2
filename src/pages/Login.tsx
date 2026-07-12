@@ -1,49 +1,69 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppContext } from "../context/AppContext";
 import style from "./Login.module.css";
 import TextInput from "../widgets/TextInput";
 import Button from "../widgets/Button";
-import { OnNavigate } from "../App";
+import { OnNavigate, PageData } from "../App";
 
-function Login(props: { onNavigate: OnNavigate }): React.JSX.Element {
-  const { create, login } = useAppContext();
-  const [nick, setNick] = useState("");
-  const [loginStr, setLoginStr] = useState("");
+function Login(props: {
+  data?: PageData;
+  onNavigate: OnNavigate;
+}): React.JSX.Element {
+  const { login } = useAppContext();
+  const [errorMsg, setErrorMsg] = useState("");
+  const [loginStr, setLoginStr] = useState(props.data?.login?.user ?? "");
   const [password, setPassword] = useState("");
-
-  const handleNickChange = (text: string) => {
-    setNick(text);
-  };
+  const [disableLogin, setDisableLogin] = useState(false);
 
   const handleLoginChange = (text: string) => {
     setLoginStr(text);
+    setErrorMsg("");
   };
 
   const handlePasswordChange = (text: string) => {
     setPassword(text);
+    setErrorMsg("");
   };
 
-  const handleCreateButton = () => {
-    create(nick, loginStr, password);
+  const handleSigInButton = () => {
+    props.onNavigate("sign");
   };
 
   const handleLoginButton = async () => {
     const result = await login(loginStr, password);
+    if (!result) setErrorMsg("Incorrect credentials");
+    else setErrorMsg("");
   };
+
+  useEffect(() => {
+    if (loginStr === "" || password === "") setDisableLogin(true);
+    else setDisableLogin(false);
+    return () => {};
+  }, [loginStr, password]);
 
   return (
     <div className={style.container}>
-      <TextInput label="Nick" onChange={handleNickChange} />
-      <TextInput label="Login" onChange={handleLoginChange} />
+      <div className={style.error}>{errorMsg}</div>
+      <TextInput
+        label="Login"
+        onChange={handleLoginChange}
+        initialValue={props.data?.login?.user}
+      />
       <TextInput
         label="Password"
         onChange={handlePasswordChange}
         isPassword={true}
       />
       <div className={style.buttons}>
-        <Button label="Create" onClick={handleCreateButton} />
+        <div className={style.leftButton} onClick={handleSigInButton}>
+          Sign In
+        </div>
         <div className={style.rightButton}>
-          <Button label="Log in" onClick={handleLoginButton} />
+          <Button
+            label="Log in"
+            disable={disableLogin}
+            onClick={handleLoginButton}
+          />
         </div>
       </div>
     </div>

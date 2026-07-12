@@ -3,13 +3,21 @@ import style from "./App.module.css";
 import Login from "./pages/Login";
 import Festival from "./Festival";
 import { useAppContext } from "./context/AppContext";
+import SignIn from "./pages/SignIn";
 
-export type Page = "login" | "home";
-export type OnNavigate = (page: Page) => void;
+export type Page = "login" | "home" | "sign";
+export type PageData = {
+  login?: {
+    user: string;
+  };
+};
+
+export type OnNavigate = (page: Page, data?: PageData) => void;
 
 function App(): React.JSX.Element {
   const { isAuthenticated } = useAppContext();
   const [page, setPage] = useState<Page>("login");
+  const [pageData, setPageData] = useState<PageData>({});
 
   useEffect(() => {
     if (isAuthenticated) setPage("home");
@@ -17,18 +25,21 @@ function App(): React.JSX.Element {
     return;
   }, [isAuthenticated]);
 
-  const navigateTo: OnNavigate = (page) => {
+  const navigateTo: OnNavigate = (page, data?) => {
     if (page === "home" && !isAuthenticated) {
       setPage("login");
+      setPageData(data ?? {});
       return;
     }
 
     setPage(page);
+    setPageData(data ?? {});
   };
 
   return (
     <div className={style.container}>
-      {page === "login" && <Login onNavigate={navigateTo} />}
+      {page === "login" && <Login data={pageData} onNavigate={navigateTo} />}
+      {page === "sign" && <SignIn onNavigate={navigateTo} />}
       {page === "home" && <Festival />}
     </div>
   );

@@ -5,9 +5,18 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
+import {
+  isResponseMessage,
+  MESSAGE_TYPE,
+  ResponseMessage,
+} from "../../worker/errors";
 
 interface AppContextType {
-  create: (nick: string, login: string, password: string) => Promise<boolean>;
+  create: (
+    nick: string,
+    login: string,
+    password: string,
+  ) => Promise<ResponseMessage>;
   login: (login: string, password: string) => Promise<boolean>;
   logout: () => void;
   isAuthenticated: boolean;
@@ -74,7 +83,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
     const result = await queryDatabase(
       `/create?nick=${nick}&login=${login}&password=${password}`,
     );
-    return true;
+    if (isResponseMessage(result)) return result;
+    else return { msg: "", type: MESSAGE_TYPE.SUCCESS };
   };
 
   const getVotes = async (token: string) => {
