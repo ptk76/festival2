@@ -18,7 +18,6 @@ export function isResponseMessage(msg: unknown) {
 }
 
 export function ErrorResponse(type: MESSAGE_TYPE): Response {
-  console.log("ERROR", type);
   switch (type) {
     case MESSAGE_TYPE.BUSY_LOGIN:
       return new Response(

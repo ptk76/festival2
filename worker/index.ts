@@ -13,7 +13,8 @@ function isAuthorisationRequired(url: URL) {
   if (
     url.pathname === "/login" ||
     url.pathname === "/create" ||
-    url.pathname === "/share"
+    url.pathname === "/share" ||
+    url.pathname === "/nick"
   )
     return false;
   return true;
@@ -63,8 +64,14 @@ export default {
         return ErrorResponse(MESSAGE_TYPE.UNKNOWN);
       }
     }
-
     if (url.pathname.startsWith("/share")) {
+      const token = url.searchParams.get("id");
+      url.searchParams.delete("id");
+      const user = shares.get(token ?? "");
+      if (user && Date.now() - user.date < 7 * 24 * 60 * 60 * 1000)
+        url.searchParams.append("id", String(user.id));
+      else return ErrorResponse(MESSAGE_TYPE.INVALID_SHARE);
+    } else if (url.pathname.startsWith("/nick")) {
       const token = url.searchParams.get("id");
       url.searchParams.delete("id");
       const user = shares.get(token ?? "");

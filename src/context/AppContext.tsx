@@ -26,6 +26,7 @@ interface AppContextType {
   updateLocalVote: (band: string, score: number) => void;
   shareVotes: () => Promise<{ token: string }>;
   getSharedVotes: (id: string) => Promise<{ band: string; score: number }[]>;
+  getSharedNick: (id: string) => Promise<string | null>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -110,6 +111,13 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
     }[];
     return result;
   };
+  const getSharedNick = async (id: string) => {
+    const result = (await queryDatabase(`/nick?id=${id}`)) as {
+      nick: string;
+    }[];
+    if (result.length === 0) return null;
+    return result[0].nick;
+  };
 
   const updateLocalVote = (band: string, score: number) => {
     const tempVotes = new Array(...votes);
@@ -146,6 +154,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
         updateLocalVote,
         shareVotes,
         getSharedVotes,
+        getSharedNick,
       }}
     >
       {children}

@@ -1,7 +1,6 @@
 import style from "./Festival.module.css";
 import festivalData from "./db/cp2026.json";
-import { useContext, useEffect, useRef, useState } from "react";
-import Button from "./widgets/Button";
+import { useEffect, useState } from "react";
 import { useAppContext } from "./context/AppContext";
 
 let fakeKey = 0;
@@ -11,6 +10,8 @@ import imgSpotify from "./assets/spotify.webp";
 import imgYoutube from "./assets/youtube.webp";
 import imgFacebook from "./assets/facebook.webp";
 import imgEarth from "./assets/earth.webp";
+
+type VOTES_TYPE = { band: string; score: number }[];
 
 function getIconPath(url: string) {
   if (url.includes("wikipedia")) return imgWiki;
@@ -68,21 +69,9 @@ function Score(props: { name: string; score: number }) {
   );
 }
 
-function ListEvents(props: { shareId: string; events: any[] }) {
-  const [votes, setVotes] = useState<{ band: string; score: number }[]>([]);
-  const { getSharedVotes } = useAppContext();
-
-  const updateVotes = async () => {
-    setVotes(await getSharedVotes(props.shareId));
-  };
-
-  useEffect(() => {
-    updateVotes();
-    return () => {};
-  }, []);
-
+function ListEvents(props: { votes: VOTES_TYPE; events: any[] }) {
   const events = props.events.map((event) => {
-    const scoreRecord = votes.find(
+    const scoreRecord = props.votes.find(
       (v) => v.band === event.name.toLocaleLowerCase().trim(),
     );
     return (
@@ -97,28 +86,16 @@ function ListEvents(props: { shareId: string; events: any[] }) {
   return <>{events}</>;
 }
 
-function ListStages(props: { shareId: string; stages: any[] }) {
+function ListStages(props: { votes: VOTES_TYPE; stages: any[] }) {
   const stages = props.stages.map((stage) => (
     <div key={fakeKey++} className={style.stages}>
-      {stage.name} <ListEvents shareId={props.shareId} events={stage.events} />
+      {stage.name} <ListEvents votes={props.votes} events={stage.events} />
     </div>
   ));
   return <>{stages}</>;
 }
 
-function isToday(dateStr: string) {
-  const date = new Date(dateStr);
-  const now = new Date();
-  return (
-    date.getFullYear === now.getFullYear &&
-    date.getMonth() === now.getMonth() &&
-    date.getDate() === now.getDate()
-  );
-}
-
-function DateView(props: { shareId: string; day: any }) {
-  const [show, setShow] = useState(true);
-
+function DateView(props: { votes: VOTES_TYPE; day: any }) {
   const getDay = (dateStr: string) => {
     const date = new Date(dateStr);
     const day = date.getDay();
@@ -134,47 +111,62 @@ function DateView(props: { shareId: string; day: any }) {
     return dayNames[day];
   };
 
-  useEffect(() => {
-    setShow(isToday(props.day.date));
-    return () => {};
-  }, []);
-
   return (
     <div key={fakeKey++} className={style.dates}>
-      <div
-        className={style.daytitle}
-        onClick={() => {
-          setShow(!show);
-        }}
-      >
-        {getDay(props.day.date)}
-      </div>
+      <div className={style.daytitle}>{getDay(props.day.date)}</div>
 
-      {show && <ListStages shareId={props.shareId} stages={props.day.stages} />}
+      <ListStages votes={props.votes} stages={props.day.stages} />
     </div>
   );
 }
 
-function ListDates(props: { shareId: string }) {
+function ListDates(props: { votes: VOTES_TYPE }) {
   const dates = festivalData.days.map((day) => {
-    return <DateView shareId={props.shareId} key={day.date} day={day} />;
+    return <DateView votes={props.votes} key={day.date} day={day} />;
   });
   return <>{dates}</>;
 }
 
 function ShareFestival(props: { shareId: string }) {
+  const [nick, setNick] = useState<string | null>(null);
+  const [sharedVotes, setSharedVotes] = useState<VOTES_TYPE>([]);
+  const { getSharedNick, getSharedVotes } = useAppContext();
   const onOpenFestival = () => {
     window.open(`/`);
   };
 
+  const update = async () => {
+    const votes = await getSharedVotes(props.shareId);
+    const nick = await getSharedNick(props.shareId);
+    setSharedVotes(votes);
+    setNick(nick);
+  };
+  useEffect(() => {
+    update();
+    return () => {};
+  }, []);
+
   return (
-    <div className={style.root}>
-      <div className={style.festival}>
-        {festivalData.festival} - {"nick"}
-      </div>
-      <ListDates shareId={props.shareId} />
-      <div onClick={onOpenFestival}>Open Your Festival</div>
-    </div>
+    <>
+      {nick && (
+        <div className={style.root}>
+          <div className={style.festival}>
+            {festivalData.festival} - {nick}
+          </div>
+          <ListDates votes={sharedVotes} />
+          <div onClick={onOpenFestival}>Open Your Festival</div>
+        </div>
+      )}
+      {!nick && (
+        <div className={style.root}>
+          <div className={style.festival}>
+            {festivalData.festival} - Unknown
+          </div>
+          <div className={style.error}>Invalid link</div>
+          <div onClick={onOpenFestival}>Open Your Festival</div>
+        </div>
+      )}
+    </>
   );
 }
 

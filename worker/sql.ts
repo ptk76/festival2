@@ -80,10 +80,17 @@ function share(params: URLSearchParams) {
   return `SELECT band, score FROM votes WHERE user_id=${userId}`;
 }
 
+function sharenick(params: URLSearchParams) {
+  const userId = getNumber(params, "id");
+  if (userId === undefined) return null;
+  return `SELECT nick FROM users WHERE id=${userId}`;
+}
+
 export async function prepareSqlQuery(url: URL) {
   if (url.pathname.startsWith("/login")) return await login(url.searchParams);
   if (url.pathname.startsWith("/create")) return await create(url.searchParams);
   if (url.pathname.startsWith("/share")) return share(url.searchParams);
+  if (url.pathname.startsWith("/nick")) return sharenick(url.searchParams);
   if (url.pathname.startsWith("/users")) return users(url.searchParams);
   if (url.pathname.startsWith("/votes")) return votes(url.searchParams);
   return null;
