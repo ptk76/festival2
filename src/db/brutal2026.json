@@ -1,0 +1,728 @@
+{
+  "festival": "Brutal Assault",
+  "days": [
+    {
+      "date": "2026-08-04",
+      "stages": [
+        {
+          "name": "Obscure",
+          "events": [
+            { "time": "2026-08-04 14:40", "name": "PATRIARCHA", "urls": [] },
+            { "time": "2026-08-04 15:30", "name": "MORDLOCH", "urls": [] },
+            {
+              "time": "2026-08-04 16:15",
+              "name": "NAHUM",
+              "urls": ["https://www.youtube.com/@NahumOfficial"]
+            },
+            {
+              "time": "2026-08-04 17:10",
+              "name": "PRVNÍ HOŘE",
+              "urls": ["https://www.youtube.com/@prvnihore"]
+            },
+            {
+              "time": "2026-08-04 18:10",
+              "name": "FILTH",
+              "urls": ["https://www.youtube.com/@FilthBand"]
+            },
+            { "time": "2026-08-04 19:10", "name": "MORAX", "urls": [] },
+            {
+              "time": "2026-08-04 20:10",
+              "name": "AHAB",
+              "urls": ["https://www.youtube.com/@AhabBand"]
+            },
+            {
+              "time": "2026-08-04 21:10",
+              "name": "THE LAWS performing SARCOFAGO",
+              "urls": ["https://www.youtube.com/@SarcofagoOfficial"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-05",
+      "stages": [
+        {
+          "name": "Main Stage A - Sea Shepherd",
+          "events": [
+            {
+              "time": "2026-08-05 12:00",
+              "name": "GUILT TRIP",
+              "urls": ["https://www.youtube.com/@GuiltTripBand"]
+            },
+            {
+              "time": "2026-08-05 12:35",
+              "name": "ONSLAUGHT",
+              "urls": ["https://www.youtube.com/@OnslaughtOfficial"]
+            },
+            {
+              "time": "2026-08-05 13:20",
+              "name": "UNEARTH",
+              "urls": ["https://www.youtube.com/@UnearthOfficial"]
+            },
+            {
+              "time": "2026-08-05 14:05",
+              "name": "H20",
+              "urls": ["https://www.youtube.com/@h2ogo"]
+            },
+            {
+              "time": "2026-08-05 14:50",
+              "name": "VENDED",
+              "urls": ["https://www.youtube.com/@VendedOfficial"]
+            },
+            {
+              "time": "2026-08-05 15:40",
+              "name": "METAL CHURCH",
+              "urls": ["https://www.youtube.com/@MetalChurchOfficial"]
+            },
+            {
+              "time": "2026-08-05 16:25",
+              "name": "CROWBAR",
+              "urls": ["https://www.youtube.com/@CrowbarMusic"]
+            },
+            {
+              "time": "2026-08-05 17:15",
+              "name": "SAMAEL",
+              "urls": ["https://www.youtube.com/@SamaelOfficial"]
+            },
+            {
+              "time": "2026-08-05 18:10",
+              "name": "NEVERMORE",
+              "urls": ["https://www.youtube.com/@NevermoreOfficial"]
+            },
+            {
+              "time": "2026-08-05 19:10",
+              "name": "FIT FOR AN AUTOPSY",
+              "urls": ["https://www.youtube.com/@FitForAnAutopsy"]
+            },
+            {
+              "time": "2026-08-05 20:05",
+              "name": "PERIPHERY",
+              "urls": ["https://www.youtube.com/@Periphery"]
+            },
+            {
+              "time": "2026-08-05 21:10",
+              "name": "MUNICIPAL WASTE",
+              "urls": ["https://www.youtube.com/@municipalwaste"]
+            },
+            {
+              "time": "2026-08-05 22:20",
+              "name": "TRIPTYKON",
+              "urls": ["https://www.youtube.com/@triptykonofficial"]
+            },
+            { "time": "2026-08-05 23:30", "name": "AMERNA", "urls": [] },
+            {
+              "time": "2026-08-05 00:35",
+              "name": "BATUSHKA",
+              "urls": ["https://www.youtube.com/@Batushka"]
+            }
+          ]
+        },
+        {
+          "name": "Obscure",
+          "events": [
+            {
+              "time": "2026-08-05 13:30",
+              "name": "200 STAB WOUNDS",
+              "urls": ["https://www.youtube.com/@200StabWounds"]
+            },
+            {
+              "time": "2026-08-05 14:30",
+              "name": "ARMORED SAINT",
+              "urls": ["https://www.youtube.com/@ArmoredSaintOfficial"]
+            },
+            {
+              "time": "2026-08-05 15:45",
+              "name": "NOVEMBERS DOOM",
+              "urls": ["https://www.youtube.com/@NovembersDoomOfficial"]
+            },
+            {
+              "time": "2026-08-05 16:55",
+              "name": "ELDER",
+              "urls": ["https://www.youtube.com/@ElderBand"]
+            },
+            {
+              "time": "2026-08-05 18:05",
+              "name": "KYLESÀ",
+              "urls": ["https://www.youtube.com/@kylesa"]
+            },
+            {
+              "time": "2026-08-05 19:20",
+              "name": "COVEN",
+              "urls": ["https://www.youtube.com/@CovenOfficial"]
+            },
+            {
+              "time": "2026-08-05 20:40",
+              "name": "KIM DRACULA",
+              "urls": ["https://www.youtube.com/@KimDracula"]
+            },
+            {
+              "time": "2026-08-05 22:00",
+              "name": "SÓLSTAFIR",
+              "urls": ["https://www.youtube.com/@SolstafirOfficial"]
+            },
+            {
+              "time": "2026-08-05 23:25",
+              "name": "PROTEST THE HERO",
+              "urls": ["https://www.youtube.com/@pthofficial"]
+            },
+            {
+              "time": "2026-08-05 00:45",
+              "name": "DIE KRUPPS",
+              "urls": ["https://www.youtube.com/@DieKruppsOfficial"]
+            },
+            {
+              "time": "2026-08-05 02:00",
+              "name": "WITCH CLUB SATAN",
+              "urls": ["https://www.youtube.com/@witchclubsatan"]
+            }
+          ]
+        },
+        {
+          "name": "Octagon",
+          "events": [
+            { "time": "2026-08-05 17:15", "name": "ZLY", "urls": [] },
+            {
+              "time": "2026-08-05 18:30",
+              "name": "CRIPPLING ALCOHOLISM",
+              "urls": ["https://www.youtube.com/@CripplingAlcoholism"]
+            },
+            { "time": "2026-08-05 19:45", "name": "OTUNN", "urls": [] },
+            {
+              "time": "2026-08-05 21:00",
+              "name": "BÖLZER",
+              "urls": ["https://www.youtube.com/@BolzerOfficial"]
+            },
+            {
+              "time": "2026-08-05 22:30",
+              "name": "VIOLENT MAGIC ORCHESTRA",
+              "urls": ["https://www.youtube.com/@ViolentMagicOrchestra"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-06",
+      "stages": [
+        {
+          "name": "Main Stage A - Sea Shepherd",
+          "events": [
+            {
+              "time": "2026-08-06 10:30",
+              "name": "CRYPTIC SHIFT",
+              "urls": ["https://www.youtube.com/@CrypticShift"]
+            },
+            {
+              "time": "2026-08-06 11:05",
+              "name": "BAEST",
+              "urls": ["https://www.youtube.com/@BAESTband"]
+            },
+            {
+              "time": "2026-08-06 11:40",
+              "name": "THE CASUALTIES",
+              "urls": ["https://www.youtube.com/@theCasualtiesNYC"]
+            },
+            {
+              "time": "2026-08-06 12:20",
+              "name": "DECEASED",
+              "urls": ["https://www.youtube.com/@DeceasedOfficial"]
+            },
+            {
+              "time": "2026-08-06 13:00",
+              "name": "SANGUISAGBOGG",
+              "urls": ["https://www.youtube.com/@Sanguisugabogg"]
+            },
+            {
+              "time": "2026-08-06 13:40",
+              "name": "ILLDISPOSED",
+              "urls": ["https://www.youtube.com/@illdisposedofficial"]
+            },
+            {
+              "time": "2026-08-06 14:20",
+              "name": "HOCICO",
+              "urls": ["https://www.youtube.com/@Hocicoh"]
+            },
+            {
+              "time": "2026-08-06 15:10",
+              "name": "KITTIE",
+              "urls": ["https://www.youtube.com/@kittiechannel"]
+            },
+            {
+              "time": "2026-08-06 16:00",
+              "name": "BLEED FROM WITHIN",
+              "urls": ["https://www.youtube.com/@bleedfromwithin"]
+            },
+            {
+              "time": "2026-08-06 16:50",
+              "name": "THY ART IS MURDER",
+              "urls": ["https://www.youtube.com/@thyartismurder"]
+            },
+            {
+              "time": "2026-08-06 17:40",
+              "name": "WALTARI (ESTONIAN FILM ORCHESTRA)",
+              "urls": ["https://www.youtube.com/@WaltariOfficial"]
+            },
+            {
+              "time": "2026-08-06 18:50",
+              "name": "SEPTICFLESH",
+              "urls": ["https://www.youtube.com/@Septicflesh_Tv"]
+            },
+            {
+              "time": "2026-08-06 19:55",
+              "name": "BODY COUNT feat. ICE T",
+              "urls": ["https://www.youtube.com/@BodyCount"]
+            },
+            {
+              "time": "2026-08-06 21:05",
+              "name": "AMORPHIS",
+              "urls": ["https://www.youtube.com/@amorphisofficial"]
+            },
+            {
+              "time": "2026-08-06 22:15",
+              "name": "CARPENTER BRUT",
+              "urls": ["https://www.youtube.com/@carpenterbrut"]
+            },
+            {
+              "time": "2026-08-06 23:30",
+              "name": "ALCEST",
+              "urls": ["https://www.youtube.com/@alcestofficial"]
+            },
+            {
+              "time": "2026-08-06 00:35",
+              "name": "DEICIDE",
+              "urls": ["https://www.youtube.com/@deicide_official"]
+            }
+          ]
+        },
+        {
+          "name": "Obscure",
+          "events": [
+            {
+              "time": "2026-08-06 14:00",
+              "name": "CASTLE RAT",
+              "urls": ["https://www.youtube.com/@castlerat"]
+            },
+            { "time": "2026-08-06 15:05", "name": "III INO", "urls": [] },
+            {
+              "time": "2026-08-06 16:15",
+              "name": "DEATH ANGEL",
+              "urls": ["https://www.youtube.com/@DeathAngel"]
+            },
+            {
+              "time": "2026-08-06 17:25",
+              "name": "BLACKBRAID",
+              "urls": ["https://www.youtube.com/@blackbraid_kvlt"]
+            },
+            {
+              "time": "2026-08-06 18:35",
+              "name": "TERROR",
+              "urls": ["https://www.youtube.com/@TerrorHardcore"]
+            },
+            {
+              "time": "2026-08-06 19:50",
+              "name": "DRACONIAN",
+              "urls": ["https://www.youtube.com/@DraconianOfficial"]
+            },
+            {
+              "time": "2026-08-06 21:05",
+              "name": "IMMOLATION",
+              "urls": ["https://www.youtube.com/@ImmolationOfficial"]
+            },
+            {
+              "time": "2026-08-06 22:25",
+              "name": "AURA NOIR",
+              "urls": ["https://www.youtube.com/@AuraNoirOfficial"]
+            },
+            {
+              "time": "2026-08-06 23:45",
+              "name": "FU MANCHU",
+              "urls": ["https://www.youtube.com/@FuManchuBand"]
+            },
+            {
+              "time": "2026-08-06 00:40",
+              "name": "FRONT LINE ASSEMBLY",
+              "urls": ["https://www.youtube.com/@FrontLineAssembly"]
+            },
+            { "time": "2026-08-06 02:10", "name": "TORMENTOR", "urls": [] }
+          ]
+        },
+        {
+          "name": "Octagon",
+          "events": [
+            {
+              "time": "2026-08-06 17:30",
+              "name": "SLOPE",
+              "urls": ["https://www.youtube.com/@SlopeHardcore"]
+            },
+            {
+              "time": "2026-08-06 18:15",
+              "name": "PSYCHONAUT",
+              "urls": ["https://www.youtube.com/@PsychonautBand"]
+            },
+            {
+              "time": "2026-08-06 19:45",
+              "name": "WYATT E.",
+              "urls": ["https://www.youtube.com/@WyattEband"]
+            },
+            { "time": "2026-08-06 21:00", "name": "LVMEN", "urls": [] },
+            {
+              "time": "2026-08-06 22:30",
+              "name": "ANTIMATTER",
+              "urls": ["https://www.youtube.com/@AntimatterBand"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-07",
+      "stages": [
+        {
+          "name": "Main Stage A - Sea Shepherd",
+          "events": [
+            {
+              "time": "2026-08-07 10:30",
+              "name": "ALTARS ABLAZE",
+              "urls": ["https://www.youtube.com/@AltarsAblaze"]
+            },
+            {
+              "time": "2026-08-07 11:05",
+              "name": "ALLT",
+              "urls": ["https://www.youtube.com/@allt"]
+            },
+            {
+              "time": "2026-08-07 11:45",
+              "name": "INTERNAL BLEEDING",
+              "urls": ["https://www.youtube.com/@InternalBLDNG"]
+            },
+            { "time": "2026-08-07 12:25", "name": "TBC", "urls": [] },
+            {
+              "time": "2026-08-07 13:05",
+              "name": "ANGELUS APATRIDA",
+              "urls": ["https://www.youtube.com/@AngelusApatridaOfficial"]
+            },
+            {
+              "time": "2026-08-07 13:45",
+              "name": "RATOS DE PORÃO",
+              "urls": ["https://www.youtube.com/@RatosDePorao"]
+            },
+            {
+              "time": "2026-08-07 14:30",
+              "name": "SIGNS OF THE SWARM",
+              "urls": ["https://www.youtube.com/@signsoftheswarmband"]
+            },
+            {
+              "time": "2026-08-07 15:15",
+              "name": "SNĚT",
+              "urls": ["https://www.youtube.com/@snetdeathmetal"]
+            },
+            {
+              "time": "2026-08-07 16:00",
+              "name": "CORROSION OF CONFORMITY",
+              "urls": ["https://www.youtube.com/@corrosionofconformityofficial"]
+            },
+            {
+              "time": "2026-08-07 16:55",
+              "name": "ANIMALS AS LEADERS",
+              "urls": ["https://www.youtube.com/@animalsasleaders"]
+            },
+            {
+              "time": "2026-08-07 17:50",
+              "name": "CORONER",
+              "urls": ["https://www.youtube.com/@coroner"]
+            },
+            {
+              "time": "2026-08-07 18:50",
+              "name": "PALEFACE SWISS",
+              "urls": ["https://www.youtube.com/@PalefaceSwiss"]
+            },
+            {
+              "time": "2026-08-07 19:45",
+              "name": "CLAWFINGER",
+              "urls": ["https://www.youtube.com/@Clawfinger"]
+            },
+            {
+              "time": "2026-08-07 20:55",
+              "name": "PRIMUS",
+              "urls": ["https://www.youtube.com/@primus"]
+            },
+            {
+              "time": "2026-08-07 22:15",
+              "name": "EIVOR",
+              "urls": ["https://www.youtube.com/@EivorOfficial"]
+            },
+            {
+              "time": "2026-08-07 23:20",
+              "name": "KATATONIA",
+              "urls": ["https://www.youtube.com/@Katatonia"]
+            },
+            {
+              "time": "2026-08-07 00:25",
+              "name": "OLD MAN'S CHILD",
+              "urls": ["https://www.youtube.com/@OldMansChildOfficial"]
+            }
+          ]
+        },
+        {
+          "name": "Obscure",
+          "events": [
+            {
+              "time": "2026-08-07 14:30",
+              "name": "SAOR",
+              "urls": ["https://www.youtube.com/@SaorOfficial"]
+            },
+            {
+              "time": "2026-08-07 15:35",
+              "name": "KRAANIUM",
+              "urls": ["https://www.youtube.com/@KraaniumOfficial"]
+            },
+            {
+              "time": "2026-08-07 16:45",
+              "name": "THY CATAFALQUE",
+              "urls": ["https://www.youtube.com/@thycatafalque"]
+            },
+            {
+              "time": "2026-08-07 17:55",
+              "name": "VIO-LENCE",
+              "urls": ["https://www.youtube.com/@Violence"]
+            },
+            {
+              "time": "2026-08-07 19:10",
+              "name": "MASTER BOOT RECORD",
+              "urls": ["https://www.youtube.com/@masterbootrecord"]
+            },
+            {
+              "time": "2026-08-07 20:30",
+              "name": "GRAVE",
+              "urls": ["https://www.youtube.com/@GraveOfficial"]
+            },
+            {
+              "time": "2026-08-07 22:00",
+              "name": "MISÞYRMING plays BEHEMOTH & MAYHEM",
+              "urls": ["https://www.youtube.com/@Misthyrming"]
+            },
+            {
+              "time": "2026-08-07 23:20",
+              "name": "ARTHUR BROWN",
+              "urls": ["https://www.youtube.com/@ArthurBrownOfficial"]
+            },
+            {
+              "time": "2026-08-07 00:35",
+              "name": "MARDUK",
+              "urls": ["https://www.youtube.com/@MardukOfficial"]
+            },
+            {
+              "time": "2026-08-07 01:40",
+              "name": "PIG",
+              "urls": ["https://www.youtube.com/@pigbandofficial7088"]
+            }
+          ]
+        },
+        {
+          "name": "Octagon",
+          "events": [
+            { "time": "2026-08-07 17:30", "name": "CHAOTIAN", "urls": [] },
+            { "time": "2026-08-07 18:30", "name": "DUSK", "urls": [] },
+            {
+              "time": "2026-08-07 19:45",
+              "name": "MORTAL SIN",
+              "urls": ["https://www.youtube.com/@MortalSin"]
+            },
+            {
+              "time": "2026-08-07 21:00",
+              "name": "SADISTIC INTENT",
+              "urls": ["https://www.youtube.com/@SadisticIntent"]
+            },
+            {
+              "time": "2026-08-07 22:30",
+              "name": "A.A. WILLIAMS",
+              "urls": ["https://www.youtube.com/@AAWilliams"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-08",
+      "stages": [
+        {
+          "name": "Main Stage B - Marshall",
+          "events": [
+            {
+              "time": "2026-08-08 10:30",
+              "name": "DESERTED FEAR",
+              "urls": ["https://www.youtube.com/@DesertedFear"]
+            },
+            {
+              "time": "2026-08-08 11:05",
+              "name": "VULVODYNIA",
+              "urls": ["https://www.youtube.com/@VulvodyniaOfficial"]
+            },
+            {
+              "time": "2026-08-08 11:45",
+              "name": "DJERV",
+              "urls": ["https://www.youtube.com/@Djerv"]
+            },
+            {
+              "time": "2026-08-08 12:25",
+              "name": "HEAVY//HITTER",
+              "urls": ["https://www.youtube.com/@HeavyHitter"]
+            },
+            {
+              "time": "2026-08-08 13:05",
+              "name": "REVOCATION",
+              "urls": ["https://www.youtube.com/@RevocationOfficial"]
+            },
+            {
+              "time": "2026-08-08 13:50",
+              "name": "SACRED REICH",
+              "urls": ["https://www.youtube.com/@SacredReich"]
+            },
+            {
+              "time": "2026-08-08 14:35",
+              "name": "MONSTROSITY",
+              "urls": ["https://www.youtube.com/@Monstrosity"]
+            },
+            {
+              "time": "2026-08-08 15:20",
+              "name": "DEMOLITION HAMMER",
+              "urls": ["https://www.youtube.com/@DemolitionHammer"]
+            },
+            {
+              "time": "2026-08-08 16:05",
+              "name": "PEELINGFLESH",
+              "urls": ["https://www.youtube.com/@PeelingFlesh"]
+            },
+            {
+              "time": "2026-08-08 17:00",
+              "name": "IMMINENCE",
+              "urls": ["https://www.youtube.com/@Imminence"]
+            },
+            {
+              "time": "2026-08-08 17:50",
+              "name": "INSOMNIUM",
+              "urls": ["https://www.youtube.com/@Insomnium"]
+            },
+            {
+              "time": "2026-08-08 18:50",
+              "name": "THE GHOST INSIDE",
+              "urls": ["https://www.youtube.com/@theghostinside"]
+            },
+            {
+              "time": "2026-08-08 19:50",
+              "name": "CANDLEMASS",
+              "urls": ["https://www.youtube.com/@Candlemass"]
+            },
+            {
+              "time": "2026-08-08 21:00",
+              "name": "LEFT TO DIE",
+              "urls": ["https://www.youtube.com/@LeftToDie"]
+            },
+            {
+              "time": "2026-08-08 22:05",
+              "name": "WARDRUNA",
+              "urls": ["https://www.youtube.com/@Wardruna"]
+            },
+            {
+              "time": "2026-08-08 23:25",
+              "name": "CRADLE OF FILTH",
+              "urls": ["https://www.youtube.com/@cradleoffilth"]
+            },
+            {
+              "time": "2026-08-08 00:30",
+              "name": "PERTURBATOR",
+              "urls": ["https://www.youtube.com/@Perturbator"]
+            }
+          ]
+        },
+        {
+          "name": "Obscure",
+          "events": [
+            {
+              "time": "2026-08-08 14:30",
+              "name": "COFFINS",
+              "urls": ["https://www.youtube.com/@Coffins"]
+            },
+            {
+              "time": "2026-08-08 15:35",
+              "name": "THE 3RD AND THE MORTAL",
+              "urls": ["https://www.youtube.com/@The3rdAndTheMortal"]
+            },
+            {
+              "time": "2026-08-08 16:45",
+              "name": "WORMED",
+              "urls": ["https://www.youtube.com/@Wormed"]
+            },
+            {
+              "time": "2026-08-08 17:50",
+              "name": "SLIFT",
+              "urls": ["https://www.youtube.com/@SLIFT"]
+            },
+            {
+              "time": "2026-08-08 19:10",
+              "name": "VADER",
+              "urls": ["https://www.youtube.com/@VaderOfficial"]
+            },
+            {
+              "time": "2026-08-08 20:20",
+              "name": "DEAFHEAVEN",
+              "urls": ["https://www.youtube.com/@Deafheaven"]
+            },
+            {
+              "time": "2026-08-08 21:30",
+              "name": "HEALTH",
+              "urls": ["https://www.youtube.com/@Health"]
+            },
+            {
+              "time": "2026-08-08 23:30",
+              "name": "BORKNAGAR",
+              "urls": ["https://www.youtube.com/@BorknagarOfficial"]
+            },
+            {
+              "time": "2026-08-08 00:50",
+              "name": "CRYPTOPSY",
+              "urls": ["https://www.youtube.com/@Cryptopsy"]
+            },
+            {
+              "time": "2026-08-08 02:00",
+              "name": "CARPATHIAN FOREST",
+              "urls": ["https://www.youtube.com/@CarpathianForest"]
+            }
+          ]
+        },
+        {
+          "name": "Octagon",
+          "events": [
+            { "time": "2026-08-08 16:00", "name": "BRUTAL KIDS", "urls": [] },
+            {
+              "time": "2026-08-08 17:30",
+              "name": "CONJURER",
+              "urls": ["https://www.youtube.com/@ConjurerUK"]
+            },
+            {
+              "time": "2026-08-08 18:30",
+              "name": "DODDESKADER",
+              "urls": ["https://www.youtube.com/@Doddeskader"]
+            },
+            {
+              "time": "2026-08-08 19:45",
+              "name": "RAGANA",
+              "urls": ["https://www.youtube.com/@Ragana"]
+            },
+            {
+              "time": "2026-08-08 21:00",
+              "name": "DER WEG EINER FREIHEIT",
+              "urls": ["https://www.youtube.com/@DerWegEinerFreiheitOfficial"]
+            },
+            {
+              "time": "2026-08-08 22:30",
+              "name": "THE RUINS OF BEVERAST",
+              "urls": ["https://www.youtube.com/@TheRuinsOfBeverast"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

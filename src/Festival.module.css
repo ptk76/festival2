@@ -2,64 +2,56 @@
   margin: 5px;
   display: flex;
   flex-direction: column;
+  background-color: #121212;
 }
 
 .festival {
-  font-size: large;
+  font-size: 2em;
   font-weight: bold;
-  color: rgb(78, 78, 78);
+  text-align: center;
+  color: white;
 }
+
 
 .dates {
   background-color: rgb(43, 43, 43);
   color: white;
-  font-weight: bold;
   border-radius: 8px;
   margin: 12px 6px;
 }
 
 .daytitle {
-  margin: 10px;
+  background-color: #333;
+  padding: 10px;
+  border-left: 5px solid #ff4500;
 }
 
 .stages {
-  background-color: black;
-  color: white;
-  font-weight: bold;
-  /* border-radius: 0 0 8px 8px; */
-  margin: 12px 0 0;
-  padding: 12px 10px;
-}
-
-.stagesnow {
-  background-color: black;
-  color: white;
-  font-weight: bold;
+  background-color: #1e1e1e;
+  padding: 15px;
   border-radius: 8px;
 }
 
-.events {
-  display: flex;
-  align-items: anchor-center;
-  color: gray;
+.stagesnow {
+  background-color: #1e1e1e;
+  padding: 15px;
+  border-radius: 8px;
 }
 
-.eventname {
-  font-weight: bold;
-  margin-left: 12px;
+.now {
+  background-color: #333;
+  padding: 10px;
+  border-left: 10px solid greenyellow;
+  color: white;
+  font-size: 1.2em;
 }
 
-.url {
-  margin-left: 10px;
-}
-
-.score{
-  margin-right: 10px;
-  cursor: pointer;
-}
-
-.scoreicon{
-  height: 32px;
+.next{
+  background-color: #333;
+  padding: 10px;
+  border-left: 10px solid green;
+  color: white;
+  font-size: 1.2em;
 }
 
 .shownow{

@@ -1,0 +1,60 @@
+{
+  "festival": "NAME OF THE FESTIVAL",
+  "days": [
+    {
+      "date": "DATE IN FORMAT YEAR-MONTH-DAY, e.g. 2026-07-16",
+      "stages": [
+        {
+          "name": "NAME OF A STAGE 1",
+          "events": [
+            {
+              "time": "TIME IN FORMAT YEAR-MONTH-DAY HOURSMINUTES, e.g. 2026-07-16 16:00",
+              "name": "NAME OF AN EVENT",
+              "urls": []
+            },
+            {
+              "time": "TIME IN FORMAT YEAR-MONTH-DAY HOURSMINUTES, e.g. 2026-07-16 16:00",
+              "name": "NAME OF AN EVENT",
+              "urls": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "date": "DATE IN FORMAT YEAR-MONTH-DAY, e.g. 2026-07-16",
+      "stages": [
+        {
+          "name": "NAME OF A STAGE 1",
+          "events": [
+            {
+              "name": "NAME OF AN EVENT",
+              "time": "TIME IN FORMAT YEAR-MONTH-DAY HOURSMINUTES, e.g. 2026-07-16 16:00",
+              "urls": []
+            },
+            {
+              "name": "NAME OF AN EVENT",
+              "time": "TIME IN FORMAT YEAR-MONTH-DAY HOURSMINUTES, e.g. 2026-07-16 16:00",
+              "urls": []
+            }
+          ]
+        },
+        {
+          "name": "NAME OF A STAGE 2",
+          "events": [
+            {
+              "name": "NAME OF AN EVENT",
+              "time": "TIME IN FORMAT YEAR-MONTH-DAY HOURSMINUTES, e.g. 2026-07-16 16:00",
+              "urls": []
+            },
+            {
+              "name": "NAME OF AN EVENT",
+              "time": "TIME IN FORMAT YEAR-MONTH-DAY HOURSMINUTES, e.g. 2026-07-16 16:00",
+              "urls": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

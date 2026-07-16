@@ -1,6 +1,66 @@
-.root {
-  margin: 0 auto;
-  padding: 2rem;
+.container {
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #333;
+}
+
+.time {
+    font-weight: bold;
+    color: #ff4500;
+    width: 60px;
+}
+
+.eventname {
+  margin-left: 10px;
+}
+
+.score{
+  flex-grow: 1;
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.scoreicon{
+  height: 32px;
+  width:  32px;
+  font-weight: bold;
+  font-size: 1.2em;
+  border: 2px solid #ff450040;
+
+  border-radius: 16px;
+  text-align: center;
+}
+
+.scoreicon.bad {
+  color: red;
+}
+.scoreicon.medicore {
+  color: yellow;
+}
+.scoreicon.neutral {
+  color: white;
+}
+.scoreicon.good {
+  color: green;
+}
+.scoreicon.excelent {
+  color: greenyellow;
+}
+
+
+
+.url {
+    color: #fff;
+    text-decoration: none;
+    background: #ff4500;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    margin-left: 10px;
+  }
+
+.url:hover {
+    background: #cc3700;
 }
