@@ -6,19 +6,17 @@
 }
 
 .time {
-    font-weight: bold;
-    color: #ff4500;
-    width: 60px;
+  font-weight: bold;
+  color: #ff4500;
+  margin-right: 12px;
 }
 
 .eventname {
-  margin-left: 10px;
 }
 
 .score{
   flex-grow: 1;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 12px;
   cursor: pointer;
 }
 
