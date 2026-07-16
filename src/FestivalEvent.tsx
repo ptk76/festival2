@@ -62,7 +62,7 @@ function Score(props: { name: string; score: number; static?: boolean }) {
         const newScore = (score + 1) % 5;
         setScore(newScore);
         updateLocalVote(props.name, newScore);
-        if (props.static) dSetVote(props.name, newScore);
+        if (props.static === undefined) dSetVote(props.name, newScore);
       }}
     >
       <ScoreIcon score={score} />
