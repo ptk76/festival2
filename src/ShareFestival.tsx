@@ -21,6 +21,7 @@ function ListEvents(props: { votes: VOTES_TYPE; events: any[] }) {
         score={scoreRecord ? scoreRecord.score : 2}
         urls={event.urls}
         time={event.time}
+        static={true}
       />
     );
   });

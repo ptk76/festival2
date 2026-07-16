@@ -49,7 +49,7 @@ function debounce(func: any, delay: number) {
   };
 }
 
-function Score(props: { name: string; score: number }) {
+function Score(props: { name: string; score: number; static?: boolean }) {
   const [score, setScore] = useState(props.score);
   const { setVote, updateLocalVote } = useAppContext();
 
@@ -62,7 +62,7 @@ function Score(props: { name: string; score: number }) {
         const newScore = (score + 1) % 5;
         setScore(newScore);
         updateLocalVote(props.name, newScore);
-        dSetVote(props.name, newScore);
+        if (props.static) dSetVote(props.name, newScore);
       }}
     >
       <ScoreIcon score={score} />
@@ -75,12 +75,13 @@ function FestivalEvent(props: {
   name: string;
   urls: string[];
   score: number;
+  static?: boolean;
 }) {
   return (
     <div className={style.container}>
       <div className={style.time}>{stringTimeToClockTime(props.time)}</div>
       <div className={style.eventname}>{props.name}</div>
-      <Score name={props.name} score={props.score} />
+      <Score name={props.name} score={props.score} static={props.static} />
       <ListUrls urls={props.urls} />
     </div>
   );
