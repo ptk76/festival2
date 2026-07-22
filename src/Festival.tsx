@@ -35,9 +35,9 @@ function ListStages(props: { stages: any[] }) {
   return <>{stages}</>;
 }
 
-function isToday(dateStr: string) {
+function isToday(timeNow: number, dateStr: string) {
   const date = new Date(dateStr);
-  const now = new Date();
+  const now = new Date(timeNow);
   return (
     date.getFullYear === now.getFullYear &&
     date.getMonth() === now.getMonth() &&
@@ -45,7 +45,7 @@ function isToday(dateStr: string) {
   );
 }
 
-function DateView(props: { day: any }) {
+function DateView(props: { timeNow: number; day: any }) {
   const [show, setShow] = useState(true);
 
   const getDay = (dateStr: string) => {
@@ -64,7 +64,7 @@ function DateView(props: { day: any }) {
   };
 
   useEffect(() => {
-    setShow(isToday(props.day.date));
+    setShow(isToday(props.timeNow, props.day.date));
     return () => {};
   }, []);
 
@@ -84,9 +84,9 @@ function DateView(props: { day: any }) {
   );
 }
 
-function ListDates() {
+function ListDates(props: { timeNow: number }) {
   const dates = festivalData.days.map((day) => {
-    return <DateView key={day.date} day={day} />;
+    return <DateView key={day.date} timeNow={props.timeNow} day={day} />;
   });
   return <>{dates}</>;
 }
@@ -95,35 +95,37 @@ function addMinutes(date: Date, minutes: number) {
   return new Date(date.getTime() + minutes * 60 * 1000);
 }
 
-function isTimeNow(datetimeStr: string) {
-  const now = new Date();
+function isTimeNow(timeNow: number, datetimeStr: string) {
+  const now = new Date(timeNow);
   const nowStart = new Date(datetimeStr);
   const nowEnd = addMinutes(nowStart, 60);
 
   return now >= nowStart && now < nowEnd;
 }
 
-const findNow = () => {
-  const day = festivalData.days.find((day) => isToday(day.date));
+const findNow = (timeNow: number) => {
+  const day = festivalData.days.find((day) => isToday(timeNow, day.date));
   if (!day) return [];
 
   return day.stages
     .map((stage) => {
-      const event = stage.events.find((event: any) => isTimeNow(event.time));
+      const event = stage.events.find((event: any) =>
+        isTimeNow(timeNow, event.time),
+      );
       return { ...event, stage: stage.name };
     })
-    .filter((e) => e.name);
+    .filter((e) => !!e.name);
 };
 
-function ShowNow() {
-  const events = findNow();
+function ShowNow(props: { timeNow: number }) {
+  const events = findNow(props.timeNow);
   if (events.length === 0) return <></>;
 
   return <ShowNowNext events={events} />;
 }
 
-function isTimeNext(datetimeStr: string) {
-  const now = new Date();
+function isTimeNext(timeNow: number, datetimeStr: string) {
+  const now = new Date(timeNow);
   const next = new Date(datetimeStr);
   return now < next;
 }
@@ -152,24 +154,29 @@ function ShowNowNext(props: { events: any }) {
   return result;
 }
 
-const findNext = () => {
-  const day = festivalData.days.find((day) => isToday(day.date));
+const findNext = (timeNow: number) => {
+  const day = festivalData.days.find((day) => isToday(timeNow, day.date));
   if (!day) return [];
 
-  return day.stages.map((stage) => {
-    const event = stage.events.find((event: any) => isTimeNext(event.time));
-    return { ...event, stage: stage.name };
-  });
+  return day.stages
+    .map((stage) => {
+      const event = stage.events.find((event: any) =>
+        isTimeNext(timeNow, event.time),
+      );
+      return { ...event, stage: stage.name };
+    })
+    .filter((e) => !!e.name);
 };
 
-function ShowNext() {
-  const events = findNext();
+function ShowNext(props: { timeNow: number }) {
+  const events = findNext(props.timeNow);
   if (events.length === 0) return <></>;
 
   return <ShowNowNext events={events} />;
 }
 
 function Festival() {
+  const [staticTime, setStaticTime] = useState(Date.now());
   const { logout, shareVotes } = useAppContext();
 
   const onLogOut = () => {
@@ -181,18 +188,27 @@ function Festival() {
     window.open(`/?share=${result.token}`);
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStaticTime(Date.now());
+    }, 60 * 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  });
+
   return (
     <div className={style.root}>
       <div className={style.festival}>{festivalData.festival}</div>
       <div className={style.now}>Now:</div>
       <div className={style.shownow}>
-        <ShowNow />
+        <ShowNow timeNow={staticTime} />
       </div>
       <div className={style.next}>Next:</div>
       <div className={style.shownext}>
-        <ShowNext />
+        <ShowNext timeNow={staticTime} />
       </div>
-      <ListDates />
+      <ListDates timeNow={staticTime} />
       <div className={style.buttons}>
         <Button label="Share" onClick={onShare} />
         <Button label="Log out" onClick={onLogOut} />
