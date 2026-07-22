@@ -1,5 +1,5 @@
 import style from "./Festival.module.css";
-import festivalData from "./db/cp2026.json";
+import festivalData from "./db/poland_rock.json";
 import { useEffect, useState } from "react";
 import { useAppContext } from "./context/AppContext";
 

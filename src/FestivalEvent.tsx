@@ -55,10 +55,11 @@ function Score(props: { name: string; score: number; static?: boolean }) {
     <div
       className={style.score}
       onClick={async () => {
+        if (props.static === true) return;
         const newScore = (score + 1) % 5;
         setScore(newScore);
         updateLocalVote(props.name, newScore);
-        if (props.static === undefined) debounce(props.name, newScore);
+        debounce(props.name, newScore);
       }}
     >
       <ScoreIcon score={score} />

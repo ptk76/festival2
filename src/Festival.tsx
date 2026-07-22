@@ -1,5 +1,5 @@
 import style from "./Festival.module.css";
-import festivalData from "./db/cp2026.json";
+import festivalData from "./db/poland_rock.json";
 import { useEffect, useState } from "react";
 import Button from "./widgets/Button";
 import { useAppContext } from "./context/AppContext";
@@ -189,7 +189,7 @@ function Festival() {
         <ShowNow />
       </div>
       <div className={style.next}>Next:</div>
-      <div className={style.shownow}>
+      <div className={style.shownext}>
         <ShowNext />
       </div>
       <ListDates />

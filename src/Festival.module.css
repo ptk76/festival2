@@ -57,10 +57,19 @@
 .shownow{
   background-color: black;
   display: flex;
-  border-radius: 8px;
   flex-direction: column;
-  margin: 5px;
+  margin-bottom: 5px;
   padding: 6px;
+  border-left: 2px solid greenyellow;
+}
+
+.shownext{
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  padding: 6px;
+  border-left: 2px solid green;
 }
 
 .buttons {
