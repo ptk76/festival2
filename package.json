@@ -13,7 +13,7 @@
     "check": "tsc && wrangler deploy --dry-run",
     "deploy": "wrangler deploy",
     "dev_wrangler": "npm run seedLocalD1 && wrangler dev",
-    "db": "wrangler d1 execute festival --local --command=\"SELECT * FROM users;SELECT * FROM votes;\"",
+    "db": "wrangler d1 execute festival --local --command=\"SELECT * FROM users;SELECT * FROM votes;SELECT * FROM tokens;\"",
     "predeploy": "wrangler d1 migrations apply DB --remote",
     "seedLocalD1": "wrangler d1 migrations apply DB --local"
   },

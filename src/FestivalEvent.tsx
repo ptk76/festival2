@@ -3,7 +3,7 @@ import { stringTimeToClockTime } from "./pages/utils";
 
 let fakeKey = 0;
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAppContext } from "./context/AppContext";
 
 export function ScoreIcon(props: { score: number }) {
@@ -39,21 +39,17 @@ function ListUrls(props: { urls: string[] }) {
   return <>{urls}</>;
 }
 
-function debounce(func: any, delay: number) {
-  let timeout = useRef(0);
-  return function (...args: any) {
-    clearTimeout(timeout.current);
-    timeout.current = setTimeout(() => {
-      func.apply(this, args);
-    }, delay);
-  };
-}
-
 function Score(props: { name: string; score: number; static?: boolean }) {
   const [score, setScore] = useState(props.score);
   const { setVote, updateLocalVote } = useAppContext();
+  let timeout = useRef(0);
 
-  const dSetVote = debounce(setVote, 5000);
+  const debounce = (band: string, score: number) => {
+    clearTimeout(timeout.current);
+    timeout.current = setTimeout(() => {
+      setVote(band, score);
+    }, 5000);
+  };
 
   return (
     <div
@@ -62,7 +58,7 @@ function Score(props: { name: string; score: number; static?: boolean }) {
         const newScore = (score + 1) % 5;
         setScore(newScore);
         updateLocalVote(props.name, newScore);
-        if (props.static === undefined) dSetVote(props.name, newScore);
+        if (props.static === undefined) debounce(props.name, newScore);
       }}
     >
       <ScoreIcon score={score} />

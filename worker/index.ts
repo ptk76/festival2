@@ -1,126 +1,90 @@
-import { prepareSqlQuery } from "./sql";
-import { v4 as uuidv4 } from "uuid";
 import { ErrorResponse, MESSAGE_TYPE } from "./errors";
 
-type TokenData = {
-  id: number;
-  date: number;
-};
-const tokens = new Map<string, TokenData>();
-const shares = new Map<string, TokenData>();
-
-function isAuthorisationRequired(url: URL) {
-  if (
-    url.pathname === "/login" ||
-    url.pathname === "/create" ||
-    url.pathname === "/share" ||
-    url.pathname === "/nick"
-  )
-    return false;
-  return true;
-}
-
-function isUserAuthorised(url: URL) {
-  const token = url.searchParams.get("token");
-  if (!token) return false;
-  const tokenData = tokens.get(token);
-  if (!tokenData) return false;
-  if (Date.now() - tokenData.date > 7 * 24 * 60 * 60 * 1000) return false;
-  return true;
-}
-
-function getUserId(url: URL) {
-  const token = url.searchParams.get("token");
-  if (!token) return null;
-  const tokenData = tokens.get(token);
-  if (!tokenData) return null;
-  return tokenData.id;
-}
+import { loginUser, createUser, isAuthorized, getNick } from "./api/user";
+import { setVote, sharedVotes, shareVotes, votes } from "./api/votes";
 
 export default {
   async fetch(request: Request, env: Env) {
     const url = new URL(request.url);
-    if (isAuthorisationRequired(url) && !isUserAuthorised(url)) {
-      return ErrorResponse(MESSAGE_TYPE.UNAUTHORIZED);
-    }
 
-    const userId = getUserId(url);
+    // No Authorisation Required
 
-    if (url.pathname.startsWith("/newshare")) {
-      const token = url.searchParams.get("token");
-      const user = tokens.get(token ?? "");
-      if (user) {
-        const body = { token: uuidv4() };
-        shares.set(body.token, {
-          id: user.id,
-          date: Date.now(),
-        });
-        return new Response(JSON.stringify(body), {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-      } else {
-        return ErrorResponse(MESSAGE_TYPE.UNKNOWN);
-      }
-    }
-    if (url.pathname.startsWith("/share")) {
-      const token = url.searchParams.get("id");
-      url.searchParams.delete("id");
-      const user = shares.get(token ?? "");
-      if (user && Date.now() - user.date < 7 * 24 * 60 * 60 * 1000)
-        url.searchParams.append("id", String(user.id));
-      else return ErrorResponse(MESSAGE_TYPE.INVALID_SHARE);
-    } else if (url.pathname.startsWith("/nick")) {
-      const token = url.searchParams.get("id");
-      url.searchParams.delete("id");
-      const user = shares.get(token ?? "");
-      if (user && Date.now() - user.date < 7 * 24 * 60 * 60 * 1000)
-        url.searchParams.append("id", String(user.id));
-      else return ErrorResponse(MESSAGE_TYPE.INVALID_SHARE);
-    } else if (userId) {
-      url.searchParams.append("id", String(userId));
-    }
-
-    const sqlQuery = await prepareSqlQuery(url);
-
-    if (!sqlQuery) return ErrorResponse(MESSAGE_TYPE.INVALID_SQL);
-
-    try {
-      const stmt = env.DB.prepare(sqlQuery);
-      const { results } = await stmt.all();
-
-      if (request.url.includes("login?")) {
-        const body =
-          results.length === 1
-            ? { nick: results[0].nick, token: uuidv4() }
-            : { nick: null, token: null };
-        if (body.token && results.length === 1) {
-          tokens.set(body.token, {
-            id: results[0].id as number,
-            date: Date.now(),
-          });
-        }
-        return new Response(JSON.stringify(body), {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-      }
-
-      return new Response(JSON.stringify(results), {
+    if (url.pathname.startsWith("/login")) {
+      const body = await loginUser(env.DB, url);
+      if (body === null) return ErrorResponse(MESSAGE_TYPE.UNAUTHORIZED);
+      return new Response(JSON.stringify(body), {
         headers: {
           "Content-Type": "application/json",
         },
       });
-    } catch (error: unknown) {
-      if (
-        error instanceof Error &&
-        error.message.includes("UNIQUE constraint failed: users.login")
-      ) {
-        return ErrorResponse(MESSAGE_TYPE.BUSY_LOGIN);
-      }
-      return ErrorResponse(MESSAGE_TYPE.UNKNOWN);
     }
+
+    if (url.pathname.startsWith("/create")) {
+      const result = await createUser(env.DB, url);
+      if (!result) return ErrorResponse(MESSAGE_TYPE.BUSY_LOGIN);
+      return new Response(JSON.stringify({}), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+
+    if (url.pathname.startsWith("/share")) {
+      const result = await sharedVotes(env.DB, url);
+      if (!result) return ErrorResponse(MESSAGE_TYPE.INVALID_SHARE);
+      return new Response(JSON.stringify(result), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+
+    if (url.pathname.startsWith("/nick")) {
+      const result = await getNick(env.DB, url);
+      if (!result) return ErrorResponse(MESSAGE_TYPE.INVALID_SHARE);
+      return new Response(JSON.stringify(result), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+
+    // Authorisation Required
+    if (!(await isAuthorized(env.DB, url)))
+      return ErrorResponse(MESSAGE_TYPE.UNAUTHORIZED);
+
+    if (url.pathname.startsWith("/votes")) {
+      const result = await votes(env.DB, url);
+      if (!result) return ErrorResponse(MESSAGE_TYPE.UNAUTHORIZED);
+      return new Response(JSON.stringify(result), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+
+    if (url.pathname.startsWith("/setvote")) {
+      const result = await setVote(env.DB, url);
+      if (!result) return ErrorResponse(MESSAGE_TYPE.UNAUTHORIZED);
+      return new Response(JSON.stringify(result), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+
+    if (url.pathname.startsWith("/newshare")) {
+      const shareToken = await shareVotes(env.DB, url);
+      if (!shareToken) return ErrorResponse(MESSAGE_TYPE.TOKEN_ERROR);
+
+      const body = { token: shareToken };
+      return new Response(JSON.stringify(body), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+
+    // if (!sqlQuery) return ErrorResponse(MESSAGE_TYPE.INVALID_SQL);
   },
 } satisfies ExportedHandler<Env>;

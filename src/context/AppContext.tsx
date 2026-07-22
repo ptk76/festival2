@@ -10,6 +10,7 @@ import {
   MESSAGE_TYPE,
   ResponseMessage,
 } from "../../worker/errors";
+import { LogInType } from "../../worker/db-types";
 
 interface AppContextType {
   create: (
@@ -72,14 +73,14 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
   const login = async (login: string, password: string) => {
     const result = (await queryDatabase(
       `/login?login=${login}&password=${password}`,
-    )) as unknown as { nick: string; token: string };
+    )) as unknown as { token: string; nick: string };
     setNick(result.nick ?? "");
-    setToken(result.token);
-    localStorage.setItem("token", result.token);
-    setIsAuthenticated(result.token !== null);
-    if (result.token !== null) await getVotes(result.token);
+    setToken(result.token ?? null);
+    if (!!result.token) localStorage.setItem("token", result.token);
+    setIsAuthenticated(!!result.token);
+    if (!!result.token) await getVotes(result.token);
 
-    return result.token !== null;
+    return !!result.token;
   };
 
   const create = async (nick: string, login: string, password: string) => {
@@ -104,15 +105,15 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
     return result as unknown as { token: string };
   };
 
-  const getSharedVotes = async (id: string) => {
-    const result = (await queryDatabase(`/share?id=${id}`)) as {
+  const getSharedVotes = async (token: string) => {
+    const result = (await queryDatabase(`/share?token=${token}`)) as {
       band: string;
       score: number;
     }[];
     return result;
   };
-  const getSharedNick = async (id: string) => {
-    const result = (await queryDatabase(`/nick?id=${id}`)) as {
+  const getSharedNick = async (token: string) => {
+    const result = (await queryDatabase(`/nick?token=${token}`)) as {
       nick: string;
     }[];
     if (result.length === 0) return null;
@@ -133,7 +134,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
   const setVote = async (band: string, score: number) => {
     try {
       const result = await queryDatabase(
-        `/votes?token=${token}&cmd=add&band=${band.toLocaleLowerCase().trim()}&score=${score}`,
+        `/setvote?token=${token}&band=${band.toLocaleLowerCase().trim()}&score=${score}`,
       );
     } catch (error) {
       console.log("error", error);

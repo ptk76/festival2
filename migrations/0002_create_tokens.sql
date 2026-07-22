@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS tokens (
+    token TEXT PRIMARY KEY NOT NULL,
+    user_id INTEGER NOT NULL,
+    timestamp INTEGER NOT NULL,
+    token_type INTEGER NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+);
