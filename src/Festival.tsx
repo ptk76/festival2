@@ -1,9 +1,9 @@
 import style from "./Festival.module.css";
-import festivalData from "./db/poland_rock.json";
 import { useEffect, useState } from "react";
 import Button from "./widgets/Button";
 import { useAppContext } from "./context/AppContext";
 import FestivalEvent from "./FestivalEvent";
+import Menu from "./Menu";
 
 let fakeKey = 0;
 function ListEvents(props: { events: any[] }) {
@@ -85,6 +85,7 @@ function DateView(props: { timeNow: number; day: any }) {
 }
 
 function ListDates(props: { timeNow: number }) {
+  const { festivalData } = useAppContext();
   const dates = festivalData.days.map((day) => {
     return <DateView key={day.date} timeNow={props.timeNow} day={day} />;
   });
@@ -104,6 +105,7 @@ function isTimeNow(timeNow: number, datetimeStr: string) {
 }
 
 const findNow = (timeNow: number) => {
+  const { festivalData } = useAppContext();
   const day = festivalData.days.find((day) => isToday(timeNow, day.date));
   if (!day) return [];
 
@@ -155,6 +157,7 @@ function ShowNowNext(props: { events: any }) {
 }
 
 const findNext = (timeNow: number) => {
+  const { festivalData } = useAppContext();
   const day = festivalData.days.find((day) => isToday(timeNow, day.date));
   if (!day) return [];
 
@@ -177,15 +180,15 @@ function ShowNext(props: { timeNow: number }) {
 
 function Festival() {
   const [staticTime, setStaticTime] = useState(Date.now());
-  const { logout, shareVotes } = useAppContext();
+  const [showMenu, setShowMenu] = useState(false);
+  const { logout, shareVotes, festivalData } = useAppContext();
 
-  const onLogOut = () => {
-    logout();
+  const onCloseMenu = () => {
+    setShowMenu(false);
   };
 
-  const onShare = async () => {
-    const result = await shareVotes();
-    window.open(`/?share=${result.token}`);
+  const onBurger = () => {
+    setShowMenu(!showMenu);
   };
 
   useEffect(() => {
@@ -198,21 +201,29 @@ function Festival() {
   });
 
   return (
-    <div className={style.root}>
-      <div className={style.festival}>{festivalData.festival}</div>
-      <div className={style.now}>Now:</div>
-      <div className={style.shownow}>
-        <ShowNow timeNow={staticTime} />
+    <div className={style.root} onClick={showMenu ? onCloseMenu : () => {}}>
+      <div className={style.header}>
+        <div className={style.burger} onClick={onBurger}>
+          ☰
+        </div>
+        {showMenu && <Menu onClose={onCloseMenu} />}
+        {!showMenu && (
+          <div className={style.festival}>{festivalData.festival}</div>
+        )}
       </div>
-      <div className={style.next}>Next:</div>
-      <div className={style.shownext}>
-        <ShowNext timeNow={staticTime} />
-      </div>
-      <ListDates timeNow={staticTime} />
-      <div className={style.buttons}>
-        <Button label="Share" onClick={onShare} />
-        <Button label="Log out" onClick={onLogOut} />
-      </div>
+      {!showMenu && (
+        <>
+          <div className={style.now}>Now:</div>
+          <div className={style.shownow}>
+            <ShowNow timeNow={staticTime} />
+          </div>
+          <div className={style.next}>Next:</div>
+          <div className={style.shownext}>
+            <ShowNext timeNow={staticTime} />
+          </div>
+          <ListDates timeNow={staticTime} />
+        </>
+      )}
     </div>
   );
 }

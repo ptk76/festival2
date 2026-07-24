@@ -12,6 +12,20 @@ import {
 } from "../../worker/errors";
 import { LogInType } from "../../worker/db-types";
 
+import fest0 from "../db/poland_rock.json";
+import fest1 from "../db/brutal2026.json";
+
+type FestivalType = {
+  festival: string;
+  days: {
+    date: string;
+    stages: {
+      name: string;
+      events: { time: string; name: string; urls: string[] }[];
+    }[];
+  }[];
+};
+
 interface AppContextType {
   create: (
     nick: string,
@@ -28,6 +42,9 @@ interface AppContextType {
   shareVotes: () => Promise<{ token: string }>;
   getSharedVotes: (id: string) => Promise<{ band: string; score: number }[]>;
   getSharedNick: (id: string) => Promise<string | null>;
+  festivalData: FestivalType;
+  switchFestivalData: (id: number) => void;
+  getFestivals: () => { name: string; id: number }[];
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -40,6 +57,19 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [votes, setVotes] = useState<{ band: string; score: number }[]>([]);
 
+  const [festivalData, setFestivalData] = useState<FestivalType>(fest0);
+
+  const switchFestivalData = (id: number) => {
+    if (id === 0) setFestivalData(fest0);
+    if (id === 1) setFestivalData(fest1);
+    localStorage.setItem("festival", String(id));
+  };
+  const getFestivals = () => {
+    return [
+      { name: fest0.festival, id: 0 },
+      { name: fest1.festival, id: 1 },
+    ];
+  };
   const queryDatabase = async (api: string): Promise<unknown[]> => {
     try {
       const result = await fetch(api);
@@ -59,6 +89,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
       setToken(t);
       setIsAuthenticated(true);
       getVotes(t);
+    }
+    const f = localStorage.getItem("festival");
+    if (f) {
+      switchFestivalData(Number(f));
     }
     return () => {};
   }, []);
@@ -156,6 +190,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
         shareVotes,
         getSharedVotes,
         getSharedNick,
+        festivalData,
+        switchFestivalData,
+        getFestivals,
       }}
     >
       {children}

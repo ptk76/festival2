@@ -3,14 +3,15 @@ import { stringTimeToClockTime } from "./pages/utils";
 
 let fakeKey = 0;
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useAppContext } from "./context/AppContext";
 
 export function ScoreIcon(props: { score: number }) {
   const OFFEST = 1;
-  const localScore = String(
-    isNaN(props.score) ? 2 + OFFEST : props.score + OFFEST,
-  );
+  const localScore =
+    props.score === 2
+      ? "-"
+      : String(isNaN(props.score) ? 2 + OFFEST : props.score + OFFEST);
   let cStyle = style.scoreicon;
 
   switch (props.score) {
