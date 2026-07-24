@@ -1,5 +1,4 @@
 import style from "./Festival.module.css";
-import festivalData from "./db/poland_rock.json";
 import { useEffect, useState } from "react";
 import { useAppContext } from "./context/AppContext";
 
@@ -8,6 +7,7 @@ let fakeKey = 0;
 type VOTES_TYPE = { band: string; score: number }[];
 
 import FestivalEvent from "./FestivalEvent";
+import Menu from "./Menu";
 
 function ListEvents(props: { votes: VOTES_TYPE; events: any[] }) {
   const events = props.events.map((event) => {
@@ -63,6 +63,7 @@ function DateView(props: { votes: VOTES_TYPE; day: any }) {
 }
 
 function ListDates(props: { votes: VOTES_TYPE }) {
+  const { festivalData } = useAppContext();
   const dates = festivalData.days.map((day) => {
     return <DateView votes={props.votes} key={day.date} day={day} />;
   });
@@ -72,7 +73,17 @@ function ListDates(props: { votes: VOTES_TYPE }) {
 function ShareFestival(props: { shareId: string }) {
   const [nick, setNick] = useState<string | null>(null);
   const [sharedVotes, setSharedVotes] = useState<VOTES_TYPE>([]);
-  const { getSharedNick, getSharedVotes } = useAppContext();
+  const { festivalData, getSharedNick, getSharedVotes } = useAppContext();
+  const [showMenu, setShowMenu] = useState(false);
+
+  const onCloseMenu = () => {
+    setShowMenu(false);
+  };
+
+  const onBurger = () => {
+    setShowMenu(!showMenu);
+  };
+
   const onOpenFestival = () => {
     window.open(`/`);
   };
@@ -92,10 +103,19 @@ function ShareFestival(props: { shareId: string }) {
     <>
       {nick && (
         <div className={style.root}>
-          <div className={style.festival}>
-            {festivalData.festival} - {nick}
+          <div className={style.header}>
+            <div className={style.burger} onClick={onBurger}>
+              ☰
+            </div>
+            {showMenu && <Menu onClose={onCloseMenu} />}
+            {!showMenu && (
+              <div className={style.festival}>
+                {festivalData.festival} - {nick}
+              </div>
+            )}
           </div>
-          <ListDates votes={sharedVotes} />
+
+          {!showMenu && <ListDates votes={sharedVotes} />}
           <div onClick={onOpenFestival}>Open Your Festival</div>
         </div>
       )}

@@ -1,6 +1,5 @@
 import style from "./Festival.module.css";
 import { useEffect, useState } from "react";
-import Button from "./widgets/Button";
 import { useAppContext } from "./context/AppContext";
 import FestivalEvent from "./FestivalEvent";
 import Menu from "./Menu";
@@ -181,7 +180,7 @@ function ShowNext(props: { timeNow: number }) {
 function Festival() {
   const [staticTime, setStaticTime] = useState(Date.now());
   const [showMenu, setShowMenu] = useState(false);
-  const { logout, shareVotes, festivalData } = useAppContext();
+  const { festivalData } = useAppContext();
 
   const onCloseMenu = () => {
     setShowMenu(false);
